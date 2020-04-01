@@ -82,7 +82,7 @@ export default {
     productTable (newParams) {
       window.scrollTo(0, 0)
       const tableName = newParams.toUpperCase()
-      this.axios.get(`http://localhost/VueProject/api/api.php?do=selectTable&table=${tableName}`).then((res) => {
+      this.axios.get(`http://localhost/Github/ND_Vue/api/api.php?do=selectTable&table=${tableName}`).then((res) => {
         if (!res.data) return this.$router.replace({ path: '/' })
         const resDate = () => ({
           tableName: this.productTable,
@@ -95,8 +95,8 @@ export default {
   mounted () {
     window.scrollTo(0, 0)
     // const tableName = this.$route.params.sex.toUpperCase()
-    // this.axios.get(`http://localhost/VueProject/api/api.php?do=selectTable&table=${this.productTable.toUpperCase()}`).then((res) => {
-    this.axios.get(`api/api.php?do=selectTable&table=${this.productTable.toUpperCase()}`).then((res) => {
+    this.axios.get(`http://localhost/Github/ND_Vue/api/api.php?do=selectTable&table=${this.productTable.toUpperCase()}`).then((res) => {
+    // this.axios.get(`api/api.php?do=selectTable&table=${this.productTable.toUpperCase()}`).then((res) => {
       if (!res.data) return this.$router.replace({ path: '/' })
       const resDate = () => ({
         tableName: this.productTable,

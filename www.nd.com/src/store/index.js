@@ -17,8 +17,8 @@ export default new Vuex.Store({
   },
   actions: {
     SLIDE_SELECT (context) {
-      // axios.get('http://localhost/VueProject/api/api.php?do=slide').then((res) => {
-      axios.get('api/api.php?do=slide').then((res) => {
+      axios.get('http://localhost/Github/ND_Vue/api/api.php?do=slide').then((res) => {
+      // axios.get('api/api.php?do=slide').then((res) => {
         context.commit('SLIDE_SELECT_SET', res.data)
       })
     }

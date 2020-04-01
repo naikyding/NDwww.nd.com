@@ -190,8 +190,8 @@ export default {
     window.scrollTo(0, 0)
     const { table, name } = this.$route.params
     // console.log(table.toUpperCase(), name)
-    // this.axios.get(`http://localhost/VueProject/api/api.php?do=productsSelect&table=${table.toUpperCase()}&title=${name.split('-').join(' ')}`).then((res) => {
-    this.axios.get(`api/api.php?do=productsSelect&table=${table.toUpperCase()}&title=${name.split('-').join(' ')}`).then((res) => {
+    this.axios.get(`http://localhost/Github/ND_Vue/api/api.php?do=productsSelect&table=${table.toUpperCase()}&title=${name.split('-').join(' ')}`).then((res) => {
+    // this.axios.get(`api/api.php?do=productsSelect&table=${table.toUpperCase()}&title=${name.split('-').join(' ')}`).then((res) => {
       this.data = res.data
     })
   },

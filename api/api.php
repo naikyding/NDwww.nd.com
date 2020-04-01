@@ -2,8 +2,8 @@
 header("Access-Control-Allow-Origin: *"); //這個必寫，否則報錯
 
 session_start();
-// $db = new PDO('mysql:host=localhost;dbname=s1080417;charset=utf8','root','');
-$db = new PDO('mysql:host=localhost;dbname=s1080417;charset=utf8','s1080417','s1080417');
+$db = new PDO('mysql:host=localhost;dbname=s1080417;charset=utf8','root','');
+// $db = new PDO('mysql:host=localhost;dbname=s1080417;charset=utf8','s1080417','s1080417');
 switch ($_GET['do']) {
   ////////////////////SLIDE
   case 'slide':
