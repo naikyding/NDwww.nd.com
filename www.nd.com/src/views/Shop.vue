@@ -34,7 +34,7 @@
             <div class="row row-cols-3" id="searchArea">
 
               <div class="col" v-for="(item, index) in data.items" :key="index">
-                <router-link :to="'/products/'+$route.params.sex+'/'+item.title.toLowerCase().split(' ').join('-')" class="text-reset text-decoration-none itemCard" @mouseenter="imgChange(index)" @mouseleave="imgChange(-1)">
+                <router-link :to="'/products/'+$route.params.sex+'/'+item.title.toLowerCase().split(' ').join('-')" class="text-reset text-decoration-none itemCard" @mouseenter.native="imgChange(index)" @mouseleave.native="imgChange(-1)">
                   <img v-if="imgAction !== index" :src="require('../assets/img/'+data.tableName.toUpperCase()+'/'+item.img1)" width="100%" :alt="item.title" >
                   <img v-else-if="imgAction === index" :src="require('../assets/img/'+data.tableName.toUpperCase()+'/'+item.img2)" width="100%" :alt="item.title" >
                   <div class="titleItem ">{{ item.title }}</div>
@@ -92,7 +92,7 @@ export default {
       })
     }
   },
-  mounted () {
+  created () {
     window.scrollTo(0, 0)
     // const tableName = this.$route.params.sex.toUpperCase()
     this.axios.get(`http://localhost/Github/ND_Vue/api/api.php?do=selectTable&table=${this.productTable.toUpperCase()}`).then((res) => {

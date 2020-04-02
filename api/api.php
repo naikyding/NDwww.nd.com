@@ -44,9 +44,9 @@ switch ($_GET['do']) {
     // print_r($_GET);
     $sql = $db->prepare('SELECT * FROM '.$_GET['table'].' WHERE title =? ;');
     $sql->execute([$_GET['title']]);
+    // print_r($sql->fetchAll());
     $data;
     foreach($sql->fetchAll() as $rows){
-
       $size = array(
         'XS' => $rows['XS'],
         'S' => $rows['S'],
@@ -77,9 +77,9 @@ switch ($_GET['do']) {
         'care' => $rows['care'],
         'size' => $size
       );
-
     }
-    echo $data = json_encode($data);
+    if(empty($data)) echo false;
+    else echo $data = json_encode($data);
   break;
   
   default:

@@ -39,7 +39,7 @@
           </b-nav-item-dropdown>
 
           <b-nav-item href="#">
-            <b-icon icon="bag" ></b-icon>
+            <b-icon icon="bag"></b-icon>
             Bag
           </b-nav-item>
         </b-navbar-nav>
@@ -53,37 +53,37 @@
         <div class=" menuItem w-100 d-sm-none d-md-flex px-2 py-3 " @mouseleave="navleave">
           <ul class="d-flex flex-column text-left ml-4 mr-5">
             <li>HIGHLIGHTS</li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">CK ONE</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">White Day Gifts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Couple Sets</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Out of Season</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">New Arrivals</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">CK ONE</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">White Day Gifts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Couple Sets</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Out of Season</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">New Arrivals</a></li>
           </ul>
           <ul class="d-flex flex-column text-left mr-5">
             <li>APPAREL</li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shop All</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Jackets</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Coats</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sweaters</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sweatshirts + Hoodies</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">T-shirts + Tanks</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Polo Shirts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shirts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Denim Jeans</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shop All</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Jackets</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Coats</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sweaters</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sweatshirts + Hoodies</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">T-shirts + Tanks</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Polo Shirts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shirts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Denim Jeans</a></li>
           </ul>
           <ul class="d-flex flex-column text-left mr-5">
             <li>ACCESSORIES</li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shop All</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Bags + Backpacks</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Wallets + Small Accessories</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Belts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Watches + Jewelry</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shoes</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Socks</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sunglasses</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shop All</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Bags + Backpacks</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Wallets + Small Accessories</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Belts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Watches + Jewelry</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shoes</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Socks</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sunglasses</a></li>
           </ul>
           <div class=" ml-auto menuImg" >
-            <a href="">
+            <a href="javascript:;">
               <img src="https://www.calvinklein.com/sgstatic/on/demandware.static/-/Sites-calvinklein-other-navigation/default/dw80acd4ab/CK1-reskin-dropdown-menu-banner.jpg">
             </a>
           </div>
@@ -96,33 +96,33 @@
         <div class=" menuItem w-100 d-flex px-2 py-3"  @mouseleave="navleave">
           <ul class="d-flex flex-column text-left ml-4 mr-5">
             <li>HIGHLIGHTS</li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">CK ONE</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">White Day Gifts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Couple Sets</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Out of Season</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">New Arrivals</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">CK ONE</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">White Day Gifts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Couple Sets</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Out of Season</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">New Arrivals</a></li>
           </ul>
           <ul class="d-flex flex-column text-left mr-5">
             <li>APPAREL</li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shop All</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Jackets</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Coats</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sweaters</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sweatshirts + Hoodies</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">T-shirts + Tanks</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Polo Shirts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shirts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shop All</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Jackets</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Coats</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sweaters</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sweatshirts + Hoodies</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">T-shirts + Tanks</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Polo Shirts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shirts</a></li>
           </ul>
           <ul class="d-flex flex-column text-left mr-5">
             <li>ACCESSORIES</li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shop All</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Bags + Backpacks</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Wallets + Small Accessories</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Belts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Watches + Jewelry</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shoes</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Socks</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sunglasses</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shop All</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Bags + Backpacks</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Wallets + Small Accessories</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Belts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Watches + Jewelry</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shoes</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Socks</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sunglasses</a></li>
           </ul>
           <div class=" ml-auto menuImg" >
             <img src="https://www.calvinklein.com/sgstatic/on/demandware.static/-/Sites-calvinklein-other-navigation/default/dwc03dcfa0/CK1-reskin-dropdown-menu-banner-2.jpg">
@@ -136,33 +136,33 @@
         <div class=" menuItem w-100 d-flex px-2 py-3"  @mouseleave="navleave">
           <ul class="d-flex flex-column text-left ml-4 mr-5">
             <li>HIGHLIGHTS</li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">CK ONE</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">White Day Gifts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Couple Sets</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Out of Season</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">New Arrivals</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">CK ONE</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">White Day Gifts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Couple Sets</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Out of Season</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">New Arrivals</a></li>
           </ul>
           <ul class="d-flex flex-column text-left mr-5">
             <li>BOYS</li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shop All</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href=""> T-Shirts + Tops</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sweatshirts + Hoodies</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Jackets + Coats</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Pants + Shorts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Underwear</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Swimwear</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sleepwear</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shop All</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;"> T-Shirts + Tops</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sweatshirts + Hoodies</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Jackets + Coats</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Pants + Shorts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Underwear</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Swimwear</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sleepwear</a></li>
           </ul>
           <ul class="d-flex flex-column text-left mr-5">
             <li>GIRLS</li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shop All</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href=""> T-Shirts + Tops</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sweatshirts + Hoodies</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Jackets + Coats</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Pants + Shorts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Underwear</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Swimwear</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sleepwear</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shop All</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;"> T-Shirts + Tops</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sweatshirts + Hoodies</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Jackets + Coats</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Pants + Shorts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Underwear</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Swimwear</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sleepwear</a></li>
           </ul>
           <div class=" ml-auto menuImg" >
             <img src="https://www.calvinklein.com/sgstatic/on/demandware.static/-/Sites-calvinklein-other-navigation/default/dwf499e027/DEC%2027%20-%20dropdown%20menu%20banner%20KIDS.jpg">
@@ -176,34 +176,34 @@
         <div class=" menuItem w-100 d-flex px-2 py-3"  @mouseleave="navleave">
           <ul class="d-flex flex-column text-left ml-4 mr-5">
             <li>HIGHLIGHTS</li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">CK ONE</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">White Day Gifts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Couple Sets</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Out of Season</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">New Arrivals</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">CK ONE</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">White Day Gifts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Couple Sets</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Out of Season</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">New Arrivals</a></li>
           </ul>
           <ul class="d-flex flex-column text-left mr-5">
             <li>MEN</li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shop All</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Jackets</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Coats</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sweaters</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sweatshirts + Hoodies</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">T-shirts + Tanks</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Polo Shirts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shirts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Denim Jeans</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shop All</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Jackets</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Coats</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sweaters</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sweatshirts + Hoodies</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">T-shirts + Tanks</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Polo Shirts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shirts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Denim Jeans</a></li>
           </ul>
           <ul class="d-flex flex-column text-left mr-5">
             <li>WOMEN</li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shop All</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Bags + Backpacks</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Wallets + Small Accessories</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Belts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Watches + Jewelry</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shoes</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Socks</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sunglasses</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shop All</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Bags + Backpacks</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Wallets + Small Accessories</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Belts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Watches + Jewelry</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shoes</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Socks</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sunglasses</a></li>
           </ul>
           <div class=" ml-auto menuImg" >
             <img src="https://www.calvinklein.com/sgstatic/on/demandware.static/-/Sites-calvinklein-other-navigation/default/dwcf54a478/DEC%2027%20-%20dropdown%20menu%20banner%20CKP.jpg">
@@ -217,59 +217,62 @@
         <div class=" menuItem w-100 d-flex px-2 py-3"  @mouseleave="navleave">
           <ul class="d-flex flex-column text-left ml-4 mr-5">
             <li>HIGHLIGHTS</li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">CK ONE</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">White Day Gifts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Couple Sets</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Out of Season</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">New Arrivals</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">CK ONE</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">White Day Gifts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Couple Sets</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Out of Season</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">New Arrivals</a></li>
           </ul>
           <ul class="d-flex flex-column text-left mr-5">
             <li>MEN</li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shop All</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Jackets</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Coats</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sweaters</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sweatshirts + Hoodies</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">T-shirts + Tanks</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Polo Shirts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shirts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Denim Jeans</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shop All</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Jackets</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Coats</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sweaters</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sweatshirts + Hoodies</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">T-shirts + Tanks</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Polo Shirts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shirts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Denim Jeans</a></li>
           </ul>
           <ul class="d-flex flex-column text-left mr-5">
             <li>WOMEN</li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shop All</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Bags + Backpacks</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Wallets + Small Accessories</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Belts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Watches + Jewelry</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shoes</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Socks</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sunglasses</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shop All</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Bags + Backpacks</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Wallets + Small Accessories</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Belts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Watches + Jewelry</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shoes</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Socks</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sunglasses</a></li>
           </ul>
           <ul class="d-flex flex-column text-left mr-5">
             <li>BOYS</li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shop All</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href=""> T-Shirts + Tops</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sweatshirts + Hoodies</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Jackets + Coats</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Pants + Shorts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Underwear</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Swimwear</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sleepwear</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shop All</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;"> T-Shirts + Tops</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sweatshirts + Hoodies</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Jackets + Coats</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Pants + Shorts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Underwear</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Swimwear</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sleepwear</a></li>
           </ul>
           <ul class="d-flex flex-column text-left mr-5">
             <li>GIRLS</li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Shop All</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href=""> T-Shirts + Tops</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sweatshirts + Hoodies</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Jackets + Coats</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Pants + Shorts</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Underwear</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Swimwear</a></li>
-            <li><a class="text-secondary text-decoration-none" style="font-size: 12px;" href="">Sleepwear</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Shop All</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;"> T-Shirts + Tops</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sweatshirts + Hoodies</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Jackets + Coats</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Pants + Shorts</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Underwear</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Swimwear</a></li>
+            <li><a class="text-secondary text-decoration-none f12" href="javascript:;">Sleepwear</a></li>
           </ul>
         </div>
       </div>
+    </div>
+    <!-- Cart -->
+    <div class="cart p-2">
     </div>
 
   </div>
@@ -281,7 +284,8 @@ export default {
   data: () => ({
     navName: ''
   }),
-  mounted () {
+  created () {
+    this.cartListSelect()
   },
   computed: {
 
@@ -294,6 +298,8 @@ export default {
     navleave () {
       if (document.body.clientWidth <= 991) return false
       this.navName = ''
+    },
+    cartListSelect () {
     }
   }
 }
@@ -301,6 +307,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.f12{
+  font-size: 12px;
+}
 h3 {
   margin: 40px 0 0;
 }
@@ -333,5 +342,24 @@ div.arrow::before{
   border-bottom:5px solid transparent ;
   border-left:5px solid transparent ;
   border-top: 5px solid #C79C57;
+}
+.cart {
+    position: absolute;
+    top: 70px;
+    right: 30px;
+    width: 300px;
+    background: #fff;
+    border-radius: 5px;
+    filter: drop-shadow(0 0 1px #ddd);
+    z-index: 3;
+}
+.cart::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    right: 19px;
+    border-width: 0px 12px 12px 12px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
 }
 </style>
