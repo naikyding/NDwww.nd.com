@@ -89,6 +89,7 @@
               </li>
               <li>
                 <!-- stock -->
+                <span class="text-danger" v-if="overStockErtxt !== ''"> {{ overStockErtxt }}</span>
                 <div class="product_stock" v-if="orderCart.size !== ''">
                   <span id="stockNum" style="color:#888">{{ inStockNum }}</span>
                 </div>
@@ -105,7 +106,6 @@
             <div class="addBag flex-grow-1">
               <!-- <button class="px-2 px-md-4 py-2 px-md-5">SHOP NOW</button class="px-2 px-md-4 py-2 px-md-5"> -->
               <input @click="addToBag" class="btn w-100 addBagBtn" type="button" value="ADD TO BAG">
-              <input type="text" name="id" value="ID" hidden>
             </div>
           </div>
           <div class="product_txt">
@@ -164,6 +164,7 @@
 import Nav from '@/components/Nav.vue'
 import EventMail from '@/components/EventMail.vue'
 import Footer from '@/components/Footer.vue'
+// import storage from '../storage/index.js'
 
 export default {
   name: 'Products',
@@ -182,9 +183,13 @@ export default {
     },
     orderCart: {
       id: '',
+      table: '',
       size: '',
       num: 1,
-      color: 'BLACK'
+      color: 'BLACK',
+      img: '',
+      title: '',
+      price: 0
     }
   }),
   components: {
@@ -193,11 +198,17 @@ export default {
     Footer
   },
   computed: {
+    orderCart_state () {
+      return this.$store.state.orderCart
+    },
     inStockNum () {
       return this.selected.inStock > 5 ? 'IN STOCK' : `ONLY ${this.selected.inStock} LEFT IN STOCK`
     },
     selectOption () {
       return this.selected.inStock > 5 ? 5 : this.selected.inStock
+    },
+    overStockErtxt () {
+      return this.$store.state.errorText
     }
   },
   watch: {
@@ -215,6 +226,9 @@ export default {
       if (!res.data) return this.$router.replace({ path: '/' })
       this.data = res.data
     })
+  },
+  mounted () {
+    this.$store.commit('overStock', '')
   },
   methods: {
     onSlideStart (slide) {
@@ -243,40 +257,30 @@ export default {
       this.orderCart.size = e.target.innerText
       this.selected.errTxt = ''
       this.orderCart.id = Number(this.data.id)
+      this.orderCart.table = this.$route.params.table.toUpperCase()
+      this.orderCart.img = this.data.img.img1
+      this.orderCart.title = this.$route.params.name.toUpperCase().split('-').join(' ')
+      this.orderCart.price = Number(this.data.sales_price)
+      this.$store.commit('overStock', '')
     },
     addToBag () {
       if (this.orderCart.size === '') {
         this.selected.errTxt = '請選擇尺吋!!'
         return false
       } else {
-        // SET localStorage
-        const localCartData = JSON.parse(localStorage.getItem('orderCart'))
-        if (localCartData == null) {
-          const data = [this.orderCart]
-          localStorage.setItem('orderCart', JSON.stringify(data))
-        } else {
-          const sameItem = localCartData.filter(item => item.id === this.orderCart.id && item.color === this.orderCart.color && item.size === this.orderCart.size)
-          if (sameItem[0]) {
-            sameItem[0].num = sameItem[0].num + this.orderCart.num
-            if (sameItem[0].num > this.selected.inStock) {
-              this.orderCart.id = ''
-              this.orderCart.size = ''
-              this.orderCart.num = 1
-              this.selected.inStock = 1
-              this.selected.errTxt = '超過庫存量!!'
-              return false
-            }
-            localStorage.setItem('orderCart', JSON.stringify(localCartData))
-          } else {
-            localCartData.push(this.orderCart)
-            localStorage.setItem('orderCart', JSON.stringify(localCartData))
-          }
+        const data = {
+          list: this.orderCart,
+          inStock: this.selected.inStock
         }
-        this.orderCart.id = ''
-        this.orderCart.size = ''
-        this.orderCart.num = 1
-        this.selected.inStock = 1
+        this.$store.dispatch('SET_ORDER_CART_LIST', data).then(() => {
+          this.orderCart = this.$options.data().orderCart
+          this.selected = this.$options.data().selected
+          if (this.overStockErtxt !== '') return false
+          this.$store.dispatch('ORDER_CART_LIST_GET')
+        })
       }
+    },
+    orderListDsp () {
     }
   }
 }

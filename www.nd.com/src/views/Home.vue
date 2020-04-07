@@ -127,6 +127,9 @@ export default {
       return this.$store.state.slide
     }
   },
+  mounted () {
+    this.$store.dispatch('SLIDE_SELECT')
+  },
   components: {
     Nav,
     Slide,
