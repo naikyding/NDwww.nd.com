@@ -39,8 +39,9 @@
           </b-nav-item-dropdown>
 
           <b-nav-item href="#" @click="show = !show">
-            <b-icon icon="bag"></b-icon>
-            Bag
+            <b-icon v-show="!totalPrice || totalPrice.totalPrice === 0" class="bagIcon" icon="bag" ></b-icon>
+            <div class="d-inline-block totalNum" v-if="totalPrice.totalNum >= 1">{{ totalPrice.totalNum }}</div>
+              Bag
           </b-nav-item>
         </b-navbar-nav>
       </b-collapse>
@@ -353,7 +354,7 @@ export default {
   },
   watch: {
     orderCart () {
-      this.show = true
+      // this.show = true
       if (this.setTimeoutId !== '') this.clearTimeOut()
       const setTimeoutId = setTimeout(() => {
         this.show = false
@@ -473,5 +474,14 @@ div.arrow::before{
   top: 0px;
   left: 7%;
   z-index: 1;
+}
+.totalNum{
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: #C79C57;
+  border-radius: 50%;
+  line-height: 1.2rem;
+  color:#fff;
+  font-size: .6rem;
 }
 </style>
