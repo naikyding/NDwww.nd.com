@@ -60,6 +60,25 @@ export default new Vuex.Store({
         }
       }
     },
+    numItemEv (context, data) {
+      const cartData = storage.get('orderCart')
+      const item = cartData[data.index]
+      switch (data.ev) {
+        case 'less':
+          item.num--
+          if (item.num < 1) return false
+          storage.set('orderCart', cartData)
+          console.log(item)
+          break
+        case 'plus':
+          item.num++
+          if (item.num > 10) return false
+          storage.set('orderCart', cartData)
+          break
+        default:
+          break
+      }
+    },
     REMOVE_ORDER_CART_ITEM (context, index) {
       storage.removeItem('orderCart', index)
     }

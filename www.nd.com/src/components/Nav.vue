@@ -38,10 +38,10 @@
             <b-dropdown-item href="#">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <b-nav-item href="#" @click="show = !show">
-            <b-icon v-show="!totalPrice || totalPrice.totalPrice === 0" class="bagIcon" icon="bag" ></b-icon>
-            <div class="d-inline-block totalNum" v-if="totalPrice.totalNum >= 1">{{ totalPrice.totalNum }}</div>
-              Bag
+          <b-nav-item @click="show = !show">
+            <b-icon icon="bag"></b-icon>
+            <span class="totalNum" v-if="totalPrice.totalNum >= 1" >{{ totalPrice.totalNum }}</span>
+            Bag
           </b-nav-item>
         </b-navbar-nav>
       </b-collapse>
@@ -302,7 +302,7 @@
           </div>
         </div>
       </div>
-      <div v-show="!totalPrice || totalPrice.totalPrice !== 0" class="row my-2">
+      <div v-show="totalPrice.totalPrice >= 1" class="row my-2">
         <div class="col-7 pl-4 text-left">
           <b class="mr-1">SUBTOTAL</b>
           <span>{{ totalPrice.totalNum }}&nbsp;</span>
@@ -312,7 +312,9 @@
           <b>NT$ {{ totalPrice.totalPrice }}</b>
         </div>
         <div class="text-center w-100 px-4">
-          <input class="checkOut w-100" type="button" value="CHECK OUT">
+          <router-link to="/checkout">
+            <input class="checkOut w-100" type="button" value="CHECK OUT">
+          </router-link>
         </div>
       </div>
 
@@ -476,6 +478,9 @@ div.arrow::before{
   z-index: 1;
 }
 .totalNum{
+  position: absolute;
+  top:50%;
+  right:50%;
   width: 1.2rem;
   height: 1.2rem;
   background-color: #C79C57;
@@ -484,4 +489,13 @@ div.arrow::before{
   color:#fff;
   font-size: .6rem;
 }
+/* .totalNum{
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: #C79C57;
+  border-radius: 50%;
+  line-height: 1.2rem;
+  color:#fff;
+  font-size: .6rem;
+} */
 </style>

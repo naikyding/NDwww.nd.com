@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Products from '../views/Products.vue'
 import Shop from '../views/Shop.vue'
+import CheckOut from '../views/CheckOut.vue'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,11 @@ const routes = [
     path: '/shop/:sex',
     name: 'shop',
     component: Shop
+  },
+  {
+    path: '/checkout',
+    name: 'checkout',
+    component: CheckOut
   },
   {
     path: '*',

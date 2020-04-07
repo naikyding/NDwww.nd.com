@@ -2,7 +2,7 @@
   <div class="products">
     <Nav></Nav>
     <!-- main -->
-    <div style="margin-top: 100px" class="container-fluid px-4">
+    <div class="container-fluid px-4 mt100">
     <!-- breadcrumbs -->
     <div id="breadcrumbs" style="font-size: .5rem;" class="text-secondary my-3 text-left">
       <router-link to="/" >
@@ -355,5 +355,8 @@ object-position: 50% 0px;
 .sizeSelect{
   background-color: #333;
   color:#fff;
+}
+.mt100{
+  margin-top: 100px;
 }
 </style>
