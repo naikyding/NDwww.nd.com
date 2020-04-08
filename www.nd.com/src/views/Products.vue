@@ -221,7 +221,7 @@ export default {
     window.scrollTo(0, 0)
     const { table, name } = this.$route.params
     // console.log(table.toUpperCase(), name)
-    this.axios.get(`http://localhost/Github/ND_Vue/api/api.php?do=productsSelect&table=${table.toUpperCase()}&title=${name.split('-').join(' ')}`).then((res) => {
+    this.axios.get(`/api/Github/ND_Vue/api/api.php?do=productsSelect&table=${table.toUpperCase()}&title=${name.split('-').join(' ')}`).then((res) => {
     // this.axios.get(`api/api.php?do=productsSelect&table=${table.toUpperCase()}&title=${name.split('-').join(' ')}`).then((res) => {
       if (!res.data) return this.$router.replace({ path: '/' })
       this.data = res.data

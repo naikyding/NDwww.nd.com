@@ -1,6 +1,5 @@
 <?php
 header("Access-Control-Allow-Origin: *"); //這個必寫，否則報錯
-
 session_start();
 $db = new PDO('mysql:host=localhost;dbname=s1080417;charset=utf8','root','');
 // $db = new PDO('mysql:host=localhost;dbname=s1080417;charset=utf8','s1080417','s1080417');
@@ -81,7 +80,91 @@ switch ($_GET['do']) {
     if(empty($data)) echo false;
     else echo $data = json_encode($data);
   break;
-  
+  case 'accCheck':
+    foreach ($_POST as $key => $val) {
+      $obj = json_decode($key);
+      $userId = $obj->{'userId'};
+      $sql = $db->prepare('SELECT * FROM customer WHERE acc =? ;');
+      $sql->execute([$userId]);
+      if($sql->fetchAll()){
+        echo true;
+      }else{
+        $sql = $db->prepare('SELECT * FROM admin WHERE acc=? ;');
+        $sql->execute([$userId]); 
+        if($sql->fetchAll()){
+          echo true;
+        }else{
+          echo false;
+        }
+      }
+    }
+  break;
+  case 'logIn':
+    foreach ($_POST as $key => $val) {
+      $obj = json_decode($key);
+      $userId = $obj->{'acc'};
+      $userPsw = $obj->{'psw'};
+      $sql = $db->prepare('SELECT * FROM customer WHERE acc =? AND psw =? ;');
+      $sql->execute([$userId, $userPsw]); 
+      $data = $sql->fetchAll();
+      if($data){
+        foreach($data as $rows){
+          $token = mt_rand();
+          $sql = $db->query('UPDATE customer SET token = '.$token.' WHERE acc = "'.$rows['acc'].'" AND psw = '.$rows['psw'].' ;');
+          $user = array(
+            "userName" => $rows['acc'],
+            "token" => $token
+          );
+          echo json_encode($user);
+        }
+      }else{
+        $sql = $db->prepare('SELECT * FROM admin WHERE acc =? AND psw =? ;');
+        $sql->execute([$userId, $userPsw]); 
+        $data = $sql->fetchAll();
+        if($data){
+          foreach($data as $rows){
+            $token = mt_rand();
+            $sql = $db->query('UPDATE admin SET token = '.$token.' WHERE acc = "'.$rows['acc'].'" AND psw = '.$rows['psw'].' ;');
+            $user = array(
+              "userName" => $rows['acc'],
+              "token" => $token
+            );
+            echo json_encode($user);
+          }
+        }else{
+          echo false;
+        }
+      }
+    }
+  break;
+  case 'rememberAcc':
+    foreach($_POST as $key => $val) {
+      $sql = $db->prepare('SELECT * FROM customer WHERE token =? ;');
+      $sql->execute([$key]);
+      $data = $sql->fetch();
+      if($data) echo $data['acc'];
+      else return false;
+    }
+  break;
+  case 'SET_listToSession':
+    // print_r($_POST);
+    // print_r($_GET['user']);
+    foreach($_POST as $key => $val) {
+      $data = json_decode($key, true);
+      foreach($data as $key => $val) {
+        $_SESSION['customer'][$_GET['user']] = [
+          'orderCart' => $val
+        ];
+      }
+    }
+  break;
+  case 'GET_listToSession':
+    if(!empty($_SESSION['customer'][$_GET['user']])){
+      echo json_encode($_SESSION['customer'][$_GET['user']]['orderCart']);
+    }else{
+      echo false;
+    }
+  break;
   default:
     # code...
   break;

@@ -21,21 +21,25 @@
             <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
           </b-nav-form> -->
 
-          <b-nav-item href="#">
+          <b-nav-item href="javascript:;">
             <b-icon icon="search" ></b-icon>
             Search</b-nav-item>
-          <b-nav-item href="#">
+          <b-nav-item href="javascript:;">
             <b-icon icon="geo-alt" ></b-icon>
             Store</b-nav-item>
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
-            <template v-slot:button-content>
-              <b-icon icon="person" ></b-icon>
-              <span>User</span>
+            <template v-slot:button-content v-if="!userName">
+              <b-icon icon="person"></b-icon>
+              User
             </template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Sign In</b-dropdown-item>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+            <template v-slot:button-content v-else>
+              <b-icon icon="person"></b-icon>
+              {{ userName }}
+            </template>
+            <b-dropdown-item href="javascript:;">Profile</b-dropdown-item>
+            <b-dropdown-item href="javascript:;" v-b-modal.modal_logIn v-if="!userName">Sign In</b-dropdown-item>
+            <b-dropdown-item href="javascript:;" @click="signOut">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item @click="show = !show">
@@ -285,8 +289,8 @@
               <b-icon-x-circle-fill></b-icon-x-circle-fill>
             </a>
           </div>
-          <div class="img col-4">
-            <img :src="require('../assets/img/'+item.table+'/'+item.img)" :alt="item.title" width="100%">
+          <div class="img pr-1 col-4">
+            <img class="mb-2" :src="require('../assets/img/'+item.table+'/'+item.img)" :alt="item.title" width="100%">
           </div>
           <div class="text col-8 text-left pl-0">
             <ul class="cartList">
@@ -320,21 +324,64 @@
 
     </div>
 
+  <!-- MODEL -->
+  <div>
+    <b-modal id="modal_logIn" hide-header hide-footer centered >
+      <!-- title -->
+      <!-- <template v-slot:modal-title class="123">
+        LOG IN
+      </template> -->
+      <div>
+        <div class="py-3 text-center"><h3 class="mt-0">LOG IN</h3></div>
+        <!-- USER ID -->
+        <div>
+          <b-form class="px-4" @submit.stop.prevent>
+            <!-- userId -->
+            <label for="feedback-user">User ID</label>
+            <b-input v-model.trim="log.userId" :state="userIdState"></b-input>
+            <b-form-invalid-feedback :state="userIdState">
+              Please enter valid NIKEDIN Member ID or email
+            </b-form-invalid-feedback>
+            <b-form-valid-feedback :state="userIdState">
+              Welcome!
+            </b-form-valid-feedback>
+            <!-- passWord -->
+            <label class="mt-3" for="text-password">Password</label>
+            <b-input type="password" v-model="log.psw" aria-describedby="password-help-block" @keydown.enter="logIn"></b-input>
+            <b-form-checkbox class="mb-2 mr-sm-2 mb-sm-0" v-model="log.remember">Remember me</b-form-checkbox>
+            <div v-if="logCheckState == false">Invalid account or password, please try again.</div>
+          </b-form>
+        </div>
+
+        <div class="text-center w-100 px-4 mt-5 mb-2">
+          <input class="confirmBtn w-100" type="button" value="Confirm" @click="logIn">
+        </div>
+
+      </div>
+    </b-modal>
+  </div>
+
   </div>
 </template>
 
 <script>
-// import storage from '../storage/index.js'
+import storage from '../storage/index.js'
 
 export default {
   name: 'Nav',
   data: () => ({
     navName: '',
     show: false,
-    setTimeoutId: ''
+    setTimeoutId: '',
+    log: {
+      userId: '',
+      psw: '',
+      remember: false
+    }
   }),
   created () {
     this.cartListSelect()
+    this.accChk()
   },
   computed: {
     orderCart () {
@@ -346,25 +393,51 @@ export default {
         totalPrice: 0,
         totalNum: 0
       }
+      console.log(allCart)
       if (allCart === [] || allCart === null) return false
       allCart.forEach((item, index) => {
         subTotal.totalNum += item.num
         subTotal.totalPrice += item.num * item.price
       })
       return subTotal
+    },
+    validation () {
+      return this.log.userId.length > 4 && this.log.userId.length < 13
+    },
+    userIdState () {
+      return this.$store.state.user.id
+    },
+    logCheckState () {
+      return this.$store.state.log
+    },
+    userName () {
+      return this.$store.state.logIn.userName
     }
   },
   watch: {
+    'log.userId' (newVal) {
+      return this.$store.dispatch('accCheck', this.log.userId)
+    },
+    logCheckState (newVal) {
+      if (newVal === true) {
+        this.$bvModal.hide('modal_logIn')
+        this.log = this.$options.data().log
+      }
+    },
     orderCart () {
       // this.show = true
-      if (this.setTimeoutId !== '') this.clearTimeOut()
-      const setTimeoutId = setTimeout(() => {
-        this.show = false
-      }, 3000)
-      this.setTimeoutId = setTimeoutId
+      // if (this.setTimeoutId !== '') this.clearTimeOut()
+      // const setTimeoutId = setTimeout(() => {
+      //   this.show = false
+      // }, 3000)
+      // this.setTimeoutId = setTimeoutId
     }
   },
   methods: {
+    accChk () {
+      const token = storage.get('TOKEN')
+      this.$store.dispatch('rememberAcc', token)
+    },
     navHover (e) {
       if (document.body.clientWidth <= 991) return false
       this.navName = e.target.text
@@ -382,6 +455,17 @@ export default {
     },
     clearTimeOut () {
       clearTimeout(this.setTimeoutId)
+    },
+    logIn () {
+      if (!this.log.userId || !this.log.psw) return false
+      const userData = {
+        acc: this.log.userId,
+        psw: this.log.psw
+      }
+      this.$store.dispatch('logIn', [userData, this.log.remember])
+    },
+    signOut () {
+      this.$store.dispatch('logOut')
     }
   }
 }
@@ -489,13 +573,20 @@ div.arrow::before{
   color:#fff;
   font-size: .6rem;
 }
-/* .totalNum{
-  width: 1.2rem;
-  height: 1.2rem;
+.modal-title{
+  width: 100%;
+  text-align: center;
+}
+.confirmBtn{
   background-color: #C79C57;
-  border-radius: 50%;
-  line-height: 1.2rem;
+  border:1px solid #C79C57;
   color:#fff;
-  font-size: .6rem;
-} */
+  height:3rem;
+  border-radius:2px;
+}
+.confirmBtn:hover{
+  border:1px solid #C79C57;
+  color:#000;
+  background-color: #fff;
+}
 </style>
