@@ -156,6 +156,7 @@ switch ($_GET['do']) {
           'orderCart' => $val
         ];
       }
+      print_r($_SESSION);
     }
   break;
   case 'GET_listToSession':

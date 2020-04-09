@@ -83,6 +83,7 @@ export default {
       window.scrollTo(0, 0)
       const tableName = newParams.toUpperCase()
       this.axios.get(`/api/Github/ND_Vue/api/api.php?do=selectTable&table=${tableName}`).then((res) => {
+      // this.axios.get(`api/api.php?do=selectTable&table=${tableName}`).then((res) => {
         if (!res.data) return this.$router.replace({ path: '/' })
         const resDate = () => ({
           tableName: this.productTable,

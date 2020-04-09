@@ -39,7 +39,7 @@
             </template>
             <b-dropdown-item href="javascript:;">Profile</b-dropdown-item>
             <b-dropdown-item href="javascript:;" v-b-modal.modal_logIn v-if="!userName">Sign In</b-dropdown-item>
-            <b-dropdown-item href="javascript:;" @click="signOut">Sign Out</b-dropdown-item>
+            <b-dropdown-item href="javascript:;" @click="signOut" v-else>Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item @click="show = !show">
@@ -348,12 +348,12 @@
             <!-- passWord -->
             <label class="mt-3" for="text-password">Password</label>
             <b-input type="password" v-model="log.psw" aria-describedby="password-help-block" @keydown.enter="logIn"></b-input>
-            <b-form-checkbox class="mb-2 mr-sm-2 mb-sm-0" v-model="log.remember">Remember me</b-form-checkbox>
+            <b-form-checkbox class="mb-2 mt-3 mr-sm-2 mb-sm-0" v-model="log.remember">Remember me</b-form-checkbox>
             <div v-if="logCheckState == false">Invalid account or password, please try again.</div>
           </b-form>
         </div>
 
-        <div class="text-center w-100 px-4 mt-5 mb-2">
+        <div class="text-center w-100 px-4 mt-4 mb-3">
           <input class="confirmBtn w-100" type="button" value="Confirm" @click="logIn">
         </div>
 
@@ -393,7 +393,6 @@ export default {
         totalPrice: 0,
         totalNum: 0
       }
-      console.log(allCart)
       if (allCart === [] || allCart === null) return false
       allCart.forEach((item, index) => {
         subTotal.totalNum += item.num

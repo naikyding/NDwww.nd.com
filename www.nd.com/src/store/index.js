@@ -66,7 +66,6 @@ export default new Vuex.Store({
     ORDER_CART_LIST_GET (context) {
       const localData = storage.get('orderCart')
       if (localData === null) context.commit('orderCartReset')
-      console.log(localData)
       context.commit('ORDER_CART_LIST_SET', localData)
     },
     SET_ORDER_CART_LIST (context, data) {
@@ -112,12 +111,14 @@ export default new Vuex.Store({
     },
     accCheck (context, userId) {
       axios.post('/api/Github/ND_Vue/api/api.php?do=accCheck', JSON.stringify({ userId })).then((res) => {
+      // axios.post('api/api.php?do=accCheck', JSON.stringify({ userId })).then((res) => {
         if (!res.data) context.commit('userIdTrue', false)
         else context.commit('userIdTrue', true)
       })
     },
     logIn (context, data) {
       axios.post('/api/Github/ND_Vue/api/api.php?do=logIn', JSON.stringify(data[0])).then((res) => {
+      // axios.post('api/api.php?do=logIn', JSON.stringify(data[0])).then((res) => {
         context.commit('ACC_Chk', res.data)
         if (data[1]) storage.set('TOKEN', res.data.token)
         if (!res.data) return false
@@ -129,14 +130,16 @@ export default new Vuex.Store({
             list[index] = item
           })
           axios.post(`/api/Github/ND_Vue/api/api.php?do=SET_listToSession&user=${res.data.userName}`, JSON.stringify({ orderCart: list }), 'json').then((res) => {
-            console.log(res.data)
+          // axios.post(`api/api.php?do=SET_listToSession&user=${res.data.userName}`, JSON.stringify({ orderCart: list }), 'json').then((res) => {
           })
         } else {
           axios.get(`/api/Github/ND_Vue/api/api.php?do=GET_listToSession&user=${res.data.userName}`).then((res) => {
-            console.log('ACTIONS EV')
-            const list = res.data[0]
-            list.img = list.img.split('_').join('.')
-            list.title = list.title.split('_').join(' ')
+          // axios.get(`api/api.php?do=GET_listToSession&user=${res.data.userName}`).then((res) => {
+            const list = res.data
+            list.forEach(item => {
+              item.img = item.img.split('_').join('.')
+              item.title = item.title.split('_').join(' ')
+            })
             storage.set('orderCart', list)
             context.commit('ORDER_CART_LIST_SET', list)
           })
@@ -144,12 +147,24 @@ export default new Vuex.Store({
       })
     },
     logOut (context) {
+      const cartData = storage.get('orderCart')
+      if (cartData) {
+        const data = storage.get('orderCart')
+        const list = {}
+        data.forEach((item, index) => {
+          list[index] = item
+        })
+        axios.post(`/api/Github/ND_Vue/api/api.php?do=SET_listToSession&user=${this.state.logIn.userName}`, JSON.stringify({ orderCart: list }), 'json').then((res) => {
+        // axios.post(`api/api.php?do=SET_listToSession&user=${this.state.logIn.userName}`, JSON.stringify({ orderCart: list }), 'json').then((res) => {
+        })
+      }
       storage.remove('TOKEN')
       storage.remove('orderCart')
       context.commit('logOut_SET')
     },
     rememberAcc (context, token) {
       axios.post('/api/Github/ND_Vue/api/api.php?do=rememberAcc', token).then((res) => {
+      // axios.post('api/api.php?do=rememberAcc', token).then((res) => {
         if (!res.data) return false
         context.commit('ACC_Chk', { userName: res.data, token })
       })
