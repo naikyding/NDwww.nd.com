@@ -349,7 +349,7 @@
             <label class="mt-3" for="text-password">Password</label>
             <b-input type="password" v-model="log.psw" aria-describedby="password-help-block" @keydown.enter="logIn"></b-input>
             <b-form-checkbox class="mb-2 mt-3 mr-sm-2 mb-sm-0" v-model="log.remember">Remember me</b-form-checkbox>
-            <div v-if="logCheckState == false">Invalid account or password, please try again.</div>
+            <div class="text-danger" v-if="logCheckState == false">Invalid account or password, please try again.</div>
           </b-form>
         </div>
 

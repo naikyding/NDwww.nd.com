@@ -32,9 +32,9 @@
     </section>
 
     <section class="cartListArea container pb-5" v-if="totalPrice.totalNum>= 1">
-      <table class="table  table-hover">
+      <div class="row tableContent">
+        <table class="table  table-hover">
         <tbody class="border-bottom ">
-
           <tr class="text-left" v-for="(item, index) in orderCart" :key="index">
             <td>
               <router-link :to="'products/'+item.table.toLowerCase()+'/'+item.title.toLowerCase().split(' ').join('-')">
@@ -66,9 +66,11 @@
               </button>
             </td>
           </tr>
-
         </tbody>
       </table>
+
+      </div>
+
       <div class="sun">
         <div class="nunText pb-2">
           <div class="d-flex py-1">
@@ -207,5 +209,8 @@ td img{
   cursor: pointer;
   font-size: 1rem;
   line-height: 30px;
+}
+.tableContent{
+  overflow: auto;
 }
 </style>
