@@ -34,7 +34,7 @@
           controls
           indicators
           background="#ababab"
-          style=""
+          class="position-sticky"
           @sliding-start="onSlideStart"
           @sliding-end="onSlideEnd"
         >
@@ -43,7 +43,7 @@
             v-for="(item, index) in data.img"
             :key="index"
           >
-            <template v-slot:img class="">
+            <template v-slot:img class="position-sticky">
               <img
                 class="d-block img-fluid "
                 :src="require('../assets/img/'+$route.params.table.toUpperCase()+'/'+item)"
@@ -358,5 +358,8 @@ object-position: 50% 0px;
 }
 .mt100{
   margin-top: 100px;
+}
+#carousel{
+  top:130px;
 }
 </style>

@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 import Products from '../views/Products.vue'
 import Shop from '../views/Shop.vue'
 import CheckOut from '../views/CheckOut.vue'
+import Admin from '../views/Admin.vue'
+import SlideTable from '../components/SlideTable.vue'
 
 Vue.use(VueRouter)
 
@@ -35,6 +37,18 @@ const routes = [
     path: '/checkout',
     name: 'checkout',
     component: CheckOut
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: Admin,
+    children: [
+      {
+        path: '首頁管理',
+        name: '首頁管理',
+        component: SlideTable
+      }
+    ]
   },
   {
     path: '*',

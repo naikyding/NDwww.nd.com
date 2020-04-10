@@ -95,6 +95,7 @@
         </div>
       </div>
     </div>
+
     <!-- WOMEN -->
     <div v-if="navName == 'WOMEN'" >
       <div class="row bg-white mx-3 border border-top-0" >
@@ -135,6 +136,7 @@
         </div>
       </div>
     </div>
+
     <!-- KIDS -->
     <div v-if="navName == 'KIDS'" >
       <div class="row bg-white mx-3 border border-top-0" >
@@ -175,6 +177,7 @@
         </div>
       </div>
     </div>
+
     <!-- PERFORMANCE -->
     <div v-if="navName == 'PERFORMANCE'" >
       <div class="row bg-white mx-3 border border-top-0" >
@@ -216,6 +219,7 @@
         </div>
       </div>
     </div>
+
     <!-- SALE -->
     <div v-if="navName == 'SALE'" >
       <div class="row bg-white mx-3 border border-top-0" >
@@ -276,11 +280,13 @@
         </div>
       </div>
     </div>
+
     <!-- Cart -->
     <div v-if="show" class="cart px-2 py-2" @mouseenter="clearTimeOut" @mouseleave="show = !show">
       <div class="py-2" v-if="!totalPrice || totalPrice.totalPrice === 0">
         <span style="font-size: .6rem">YOU HAVE NO ITEMS IN YOUR BAG.</span>
       </div>
+
       <!-- LIST ITEM -->
       <div v-else class="overFlow">
         <div class="row p-2 position-relative" v-for="(item, index) in orderCart" :key="index">
@@ -321,7 +327,6 @@
           </router-link>
         </div>
       </div>
-
     </div>
 
   <!-- MODEL -->

@@ -166,6 +166,27 @@ switch ($_GET['do']) {
       echo false;
     }
   break;
+  case 'GET_slide':
+    $rows = $db->query('SELECT * FROM slide WHERE 1 ;');
+    $data;
+    foreach($rows as $row) {
+      $data[] = [
+        'dsp' => (int)$row['display'],
+        'id' => (int)$row['id'],
+        'img' => $row['img'],
+        'title' => $row['title'],
+        'info' => $row['info']
+      ];
+    }
+    echo $data = json_encode($data);
+  break;
+  case 'DELETE_slide':
+    foreach($_POST as $id => $val) {
+      $sql = $db->prepare('DELETE FROM slide WHERE id =? ;');
+      $res = $sql->execute([$id]);
+      echo $res;
+    }
+  break;
   default:
     # code...
   break;
