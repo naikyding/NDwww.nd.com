@@ -296,7 +296,7 @@
             </a>
           </div>
           <div class="img pr-1 col-4">
-            <img class="mb-2" :src="require('../assets/img/'+item.table+'/'+item.img)" :alt="item.title" width="100%">
+            <img class="mb-2" :src="`/images/${item.table}/${item.img}`" :alt="item.title" width="100%">
           </div>
           <div class="text col-8 text-left pl-0">
             <ul class="cartList">

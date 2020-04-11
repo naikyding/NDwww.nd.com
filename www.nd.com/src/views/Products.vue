@@ -46,7 +46,7 @@
             <template v-slot:img class="position-sticky">
               <img
                 class="d-block img-fluid "
-                :src="require('../assets/img/'+$route.params.table.toUpperCase()+'/'+item)"
+                :src="`/images/${$route.params.table.toUpperCase()}/${item}`"
                 :alt="slide.title"
               >
             </template>

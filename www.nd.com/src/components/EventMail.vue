@@ -49,7 +49,7 @@ a {
   width:100;
   background:
             linear-gradient(to right, rgba(0,0,0,.5), rgba(202, 67, 67, 0.1)),
-            url('../assets/img/landing/ck_bg.jpg') no-repeat center top fixed ;
+            url('/images/landing/ck_bg.jpg') no-repeat center top fixed ;
   background-size: cover;
   border-bottom: 7px solid #C79C57;
   text-shadow: 0 0 1px #999;

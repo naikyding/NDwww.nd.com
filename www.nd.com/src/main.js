@@ -4,6 +4,8 @@ import Vue from 'vue'
 import './plugins/bootstrap-vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VueSweetalert2 from 'vue-sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css'
 
 import App from './App.vue'
 import router from './router'
@@ -17,6 +19,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { BootstrapVue, BIcon, BIconArrowUp, BIconArrowDown, BIconSearch, BIcondash, BIconBag, BIconGeoAlt, BIconPerson, BIconDash, BIconPlus, BIconXCircleFill, BIconArrowRepeat, BIconTrash } from 'bootstrap-vue'
 
 Vue.use(BootstrapVue)
+Vue.use(VueSweetalert2)
 Vue.component('BIcon', BIcon)
 Vue.component('BIconArrowUp', BIconArrowUp)
 Vue.component('BIconArrowDown', BIconArrowDown)

@@ -20,8 +20,8 @@
       >
         <template v-slot:img class="">
           <img
-            class="d-block img-fluid "
-            :src="require('../assets/img/slide/'+slide.img)"
+            class="d-block img-fluid"
+            :src="`/images/slide/${slide.img}`"
             :alt="slide.title"
             >
         </template>

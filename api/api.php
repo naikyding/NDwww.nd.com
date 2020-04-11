@@ -187,6 +187,36 @@ switch ($_GET['do']) {
       echo $res;
     }
   break;
+  case 'PATCH_slide':
+    $id = $_POST['id'];
+    $dsp = !isset($_POST['dsp'][$id])?0:1;
+    $sql = $db->prepare('UPDATE slide SET title =?, info=?, display=? WHERE id=? ;');
+    $res = $sql->execute([$_POST['title'][$id], $_POST['info'][$id], $dsp, $id]);
+    echo $res;
+  break;
+  case '':
+    $rows = $db->query('SELECT * FROM eventMail WHERE 1 ;');
+    
+  break;
+  case 'POST_slide':
+    // print_r($_POST);
+    // print_r($_FILES);
+    $index = 'id';
+    $value = 'NULL';
+    foreach($_POST as $key => $val){
+      $index .= ', '.$key;
+      $value .= ', "'.$val.'"';
+    }
+    if($_FILES['img']['error'] == 0){
+      $index .= ', img';
+      $value .= ', "'.$_FILES['img']['name'].'"';
+      $src = $_FILES['img']['tmp_name'];
+      copy($src,'../images/slide/'.$_FILES['img']['name']);
+    }
+    $sql = 'INSERT INTO slide ('.$index.') VALUES ('.$value.') ;';
+    $res = $db->query($sql);
+    echo $res = ($res)?true:false;
+  break;
   default:
     # code...
   break;
