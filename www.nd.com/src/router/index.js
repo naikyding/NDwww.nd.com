@@ -5,8 +5,9 @@ import Products from '../views/Products.vue'
 import Shop from '../views/Shop.vue'
 import CheckOut from '../views/CheckOut.vue'
 import Admin from '../views/Admin.vue'
-import SlideTable from '../components/TableSlide.vue'
+import TableSlide from '../components/TableSlide.vue'
 import TableEvent from '../components/TableEvent.vue'
+import TableProduct from '../components/TableProduct.vue'
 
 Vue.use(VueRouter)
 
@@ -47,7 +48,12 @@ const routes = [
       {
         path: '首頁管理',
         name: '首頁管理',
-        component: SlideTable
+        component: TableSlide
+      },
+      {
+        path: '商品管理',
+        name: '商品管理',
+        component: TableProduct
       },
       {
         path: '優惠活動',

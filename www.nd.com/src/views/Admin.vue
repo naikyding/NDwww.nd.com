@@ -19,7 +19,7 @@
         <li class="text-center"><router-link to="/admin/訂單管理" class="py-4 d-block text-decoration-none" @click.native="showItem" :class="{ itemBg: this.sidebar.clickItem == '訂單管理' }">訂單管理</router-link></li>
       </ul>
       <!-- right side -->
-      <div class="content w-100">
+      <div class="content w-100 overflow-auto vh-100">
         <!-- item DB -->
         <router-view></router-view>
       </div>

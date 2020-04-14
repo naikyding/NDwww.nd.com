@@ -4,7 +4,7 @@ session_start();
 $db = new PDO('mysql:host=localhost;dbname=s1080417;charset=utf8','root','');
 // $db = new PDO('mysql:host=localhost;dbname=s1080417;charset=utf8','s1080417','s1080417');
 switch ($_GET['do']) {
-  ////////////////////SLIDE
+  // INDEX SLIDE SELECT -------//
   case 'slide':
     $query = $db->query('SELECT * FROM slide WHERE 1');
     $slide;
@@ -20,6 +20,7 @@ switch ($_GET['do']) {
     }
     echo $slide = json_encode($slide);
   break;
+  // SHOP PRODUCT SELECT -------//
   case 'selectTable':
     $sql = $db->query('SELECT * FROM '.$_GET['table'].' WHERE 1 ;');
     $data;
@@ -39,6 +40,7 @@ switch ($_GET['do']) {
       echo false;
     }
   break;
+  // PRODUCT PAGE SELECT -------//
   case 'productsSelect':
     // print_r($_GET);
     $sql = $db->prepare('SELECT * FROM '.$_GET['table'].' WHERE title =? ;');
@@ -80,6 +82,7 @@ switch ($_GET['do']) {
     if(empty($data)) echo false;
     else echo $data = json_encode($data);
   break;
+  // ACC CHECK --------//
   case 'accCheck':
     foreach ($_POST as $key => $val) {
       $obj = json_decode($key);
@@ -146,6 +149,7 @@ switch ($_GET['do']) {
       else return false;
     }
   break;
+  // LocalStorage Ev ------//
   case 'SET_listToSession':
     // print_r($_POST);
     // print_r($_GET['user']);
@@ -166,6 +170,7 @@ switch ($_GET['do']) {
       echo false;
     }
   break;
+  // SLIDE ----------- //
   case 'GET_slide':
     $rows = $db->query('SELECT * FROM slide WHERE 1 ;');
     $data;
@@ -215,6 +220,72 @@ switch ($_GET['do']) {
     }
     $sql = 'INSERT INTO slide ('.$index.') VALUES ('.$value.') ;';
     $res = $db->query($sql);
+    echo $res = ($res)?true:false;
+  break;
+  // PRODUCT SELECT <ADMIN> ----- // 
+  case 'GET_product':
+    $sql = $db->query('SELECT * FROM '.$_GET['table'].' WHERE 1 ;');
+    $data;
+    $sizeArray;
+    function size($array, $size){
+      global $sizeArray;
+      if(!empty($array[$size])){
+        $sizeArray[$size] = (int)$array[$size.'num'];
+        // array_push($array, $size[])
+      }
+    }
+    foreach($sql->fetchAll() as $rows) {
+      size($rows, 'XS');
+      size($rows, 'S');
+      size($rows, 'M');
+      size($rows, 'L');
+      size($rows, 'XL');
+      size($rows, 'XXL');
+      $img = [
+        'img1' => $rows['img1'],
+        'img2' => $rows['img2'],
+        'img3' => $rows['img3']
+      ];
+      $data[] = [
+        'id' => (int)$rows['id'],
+        'title' => $rows['title'],
+        'price' => (int)$rows['sales_price'],
+        'tag' => $rows['tag'],
+        'color' => $rows['color'],
+        'details' => $rows['details'],
+        'care' => $rows['care'],
+        'img' => $img,
+        'size' => $sizeArray
+      ];
+    }
+    echo json_encode($data);
+  break;
+  case 'DELETE_product':
+    foreach($_POST as $key => $val) {
+      $data = json_decode($key, true);
+      $sql = $db->prepare('DELETE FROM '.$data['table'].' WHERE id =? ;');
+      $res = $sql->execute([$data['id']]);
+      echo $res;
+    }
+  break;
+  case 'POST_product':
+    // print_r($_POST);
+    // print_r($_FILES);
+    $index = 'id, tableName';
+    $value = 'null, "'.$_POST['table'].'"';
+    foreach($_POST as $key => $val){
+      if( $key != 'table' ){
+        $index .= ', '.$key;
+        $value .= is_numeric($val)?', '.$val:', "'.$val.'"'; //判定是否為數字
+      }
+    }
+    foreach($_FILES['img']['name'] as $key => $val){
+      $index .= ', img'.($key+1);
+      $value .= ', "'.$val.'"';
+      copy($_FILES['img']['tmp_name'][$key], '../images/'.$_POST['table'].'/'.$val);
+    }
+    // echo $sql = 'INSERT INTO '.$_POST['table'].' ('.$index.') VALUES ('.$value.') ;';
+    $res = $db->query('INSERT INTO '.$_POST['table'].' ('.$index.') VALUES ('.$value.') ;');
     echo $res = ($res)?true:false;
   break;
   default:

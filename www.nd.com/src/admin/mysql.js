@@ -25,8 +25,9 @@ const mysql = {
   },
   delete (toItem, id) {
     if (!id) return false
-    return axios.post(this.url + toItem, id).then((res) => {
+    return axios.post(this.url + toItem, JSON.stringify(id)).then((res) => {
       return res.data
+      // console.log(res.data)
     })
   }
 }
