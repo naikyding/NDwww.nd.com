@@ -47,7 +47,7 @@
       <!-- modal -->
       <b-modal id="newProduct_Modal" size="xl" centered hide-header hide-footer>
         <div class="px-3">
-          <form id="newProduct" enctype="multipart/form-data" method="POST" @submit="postProduct">
+          <form id="newProduct" enctype="multipart/form-data" method="POST" @submit.stop.prevent="postProduct">
             <div class="h3 mb-3 text-center">NEW PRODUCT <span>{{ select }}</span></div>
             <hr>
             <div class="container-fluid">
@@ -57,7 +57,7 @@
                     <div class="form-group col-md-6">
                       <label for="productTitle">產品名稱</label>
                       <input type="text" name="table" :value="select" hidden>
-                      <input type="text" class="form-control" placeholder="請輸入產品名稱" name="title" id="productTitle" v-model="edit.title" required="required">
+                      <input type="text" class="form-control" placeholder="請輸入產品名稱" name="title" id="productTitle" required="required">
                     </div>
                     <div class="form-group col-md-6">
                       <label for="productTag">產品類別</label>
@@ -71,7 +71,7 @@
                   </div>
                   <div class="form-group">
                     <label for="productPrice">產品售價</label>
-                    <input type="number" class="form-control" placeholder="請輸入台幣售價" name="sales_price" id="productPrice" v-model="edit.price" required="required">
+                    <input type="number" class="form-control" placeholder="請輸入台幣售價" name="sales_price" id="productPrice" required="required">
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-8">
@@ -90,7 +90,7 @@
                         <div class="form-check form-check-inline">
                           <input class="form-check-input" type="checkbox" id="size_xs" name="XS" value="XS" v-model="form.size.XS">
                           <label class="form-check-label mr-2" for="size_xs">XS</label>
-                          <input class="num form-control form-control-sm " :disabled="!edit.size.XS" v-model="edit.size.XS" type="number" name="XSnum" placeholder="勾選後輸入庫存量" required="required">
+                          <input class="num form-control form-control-sm " :disabled="!form.size.XS" type="number" name="XSnum" placeholder="勾選後輸入庫存量" required="required">
                         </div>
                       </div>
                       <div class="col d-flex justify-content-end pr-1">
@@ -171,6 +171,137 @@
         </div>
       </b-modal>
 
+      <!-- EDIT MOMAL -->
+      <b-modal id="edit_Product_Modal" size="xl" centered hide-header hide-footer>
+        <div class="px-3">
+          <form id="editProduct" enctype="multipart/form-data" method="POST" @submit.stop.prevent="patchProduct">
+            <div class="h3 mb-3 text-center">EDIT PRODUCT <span>{{ select }}</span></div>
+            <hr>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-12 col-sm-6"><!-- left-->
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="productTitle">產品名稱</label>
+                      <input type="text" name="table" :value="select" hidden>
+                      <input type="text" name="id" :value="edit.id" hidden>
+                      <input type="text" class="form-control" placeholder="請輸入產品名稱" name="title" id="productTitle" required="required" v-model="edit.title">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="productTag">產品類別</label>
+                      <select name="tag" class="form-control" required v-model="edit.tag">
+                        <option value="APPAREL">APPAREL</option>
+                        <option value="UNDERWEAR">UNDERWEAR</option>
+                        <option value="ACTIVEWEAR">ACTIVEWEAR</option>
+                        <option value="ACCESSORIES">ACCESSORIES</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="productPrice">產品售價</label>
+                    <input type="number" class="form-control" placeholder="請輸入台幣售價" name="sales_price" id="productPrice" required="required" v-model="edit.price">
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-8">
+                      <label for="productColor">顏色</label>
+                      <select class="form-control" name="color" required="required" v-model="edit.color">
+                        <option selected>BLACK</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                    </div>
+                  </div>
+                  <div class="form-group ">
+                    <div class="radio_txt">尺吋</div>
+                    <div class="row mb-2">
+                      <div class="col ">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="size_xs" name="XS" value="XS" :checked="edit.size.XS">
+                          <label class="form-check-label mr-2" for="size_xs">XS</label>
+                          <input class="num form-control form-control-sm " :disabled="!edit.size.XS" v-model="edit.size.XS" type="number" name="XSnum" placeholder="勾選後輸入庫存量" required="required">
+                        </div>
+                      </div>
+                      <div class="col d-flex justify-content-end pr-1">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="size_s" name="S" value="S" v-model="edit.size.S">
+                          <label class="form-check-label mr-2" for="size_s">S</label>
+                          <input class="num form-control form-control-sm" :disabled="!edit.size.S" v-model="edit.size.S" type="number" name="Snum" placeholder="勾選後輸入庫存量" required="required">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-2">
+                      <div class="col">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="size_m" name="M" value="M" v-model="edit.size.M">
+                          <label class="form-check-label mr-3" for="size_m">M</label>
+                          <input class="num form-control form-control-sm" :disabled="!edit.size.M" v-model="edit.size.M" type="number" name="Mnum" placeholder="勾選後輸入庫存量" required="required">
+                        </div>
+                      </div>
+                      <div class="col  d-flex justify-content-end pr-1">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="size_l" name="L" value="L" v-model="edit.size.L">
+                          <label class="form-check-label mr-2" for="size_l">L</label>
+                          <input class="num form-control form-control-sm" :disabled="!edit.size.L" v-model="edit.size.L" type="number" name="Lnum" placeholder="勾選後輸入庫存量" required="required">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-2 ">
+                      <div class=" col">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="size_xl" name="XL" value="XL" v-model="edit.size.XL">
+                          <label class="form-check-label mr-2" for="size_xl">XL</label>
+                          <input class="num form-control form-control-sm" :disabled="!edit.size.XL" v-model="edit.size.XL" type="number" name="XLnum" placeholder="勾選後輸入庫存量" required="required">
+                        </div>
+                      </div>
+                      <div class="col d-flex justify-content-end pr-1">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="size_xxl" name="XXL" value="XXL" v-model="edit.size.XXL">
+                          <label class="form-check-label mr-2" for="size_xxl">XXL</label>
+                          <input class="num form-control form-control-sm" :disabled="!edit.size.XXL" v-model="edit.size.XXL" type="number"  name="XXLnum" placeholder="勾選後輸入庫存量" required="required">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- leftEnd -->
+                </div>
+                <div class="col-12 col-sm-6"><!-- right-->
+                  <div class="form-group">
+                    <label for="productDetailes">產品說明</label>
+                    <textarea class="form-control" type="text" id="productDetailes" name="details" rows="3" required="required" v-model="edit.details"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="productCare">商品成分</label>
+                    <textarea class="form-control" id="productCare" name="care" rows="3" type="text" v-model="edit.care"></textarea>
+                  </div>
+                  <!-- uploadPhoto -->
+                  <div class="input-group d-block">
+                    <div v-if="uploadFile.num === 0" class="row justify-content-around mx-1">
+                      <div class="mx-1" v-for="(item, index) in edit.img" :key="index"><img :src="`/images/${select}/${item}`" width="100px"></div>
+                    </div>
+                    <div v-else class="row justify-content-around mx-1">
+                      <div class="mx-1" v-for="(item, index) in uploadFile.img" :key="index"><img :src="uploadFile.img[index]" width="100px"></div>
+                    </div>
+                    <label class="btn btn-secondary w-100 my-2">
+                      <input @change="uploadImg" type="file" name="img[]" accept="image/*" hidden multiple="multiple">
+                      <i class="fas fa-arrow-circle-up"></i>更新商品圖片
+                    </label>
+                    <span v-if="uploadFile.num === 0" class="fzsmall">請選取 3 個檔案</span>
+                    <span v-else class="infoTxt fzsmall">已夾帶 {{ uploadFile.num }} 個檔案</span>
+                  </div>
+                  <!-- contentIn end -->
+                </div>
+              </div>
+            </div>
+            <!-- footer Button -->
+            <div class="modal-footer justify-content-around mt-2">
+              <button type="button" @click="modalHide" class="btn btn-outline-danger">關 閉</button>
+              <button type="submit" class="btn btn-lg btn-primary">送 出</button>
+              <button type="reset" @click="fileReset" class="btn btn-outline-secondary">重 寫</button>
+            </div>
+          </form>
+        </div>
+      </b-modal>
+
     </div>
 
   </div>
@@ -202,7 +333,13 @@ export default {
         XXL: false
       }
     },
-    edit: []
+    edit: {
+      id: 0,
+      title: '',
+      size: [],
+      img: [],
+      price: 0
+    }
   }),
   created () {
     this.getTable('MEN')
@@ -242,23 +379,22 @@ export default {
     patchItem (id) {
       const editData = this.data.filter(item => item.id === id)
       this.edit = editData[0]
-      this.$bvModal.show('newProduct_Modal')
-      console.log(this.edit)
+      this.$bvModal.show('edit_Product_Modal')
     },
-    patchSlide (e) {
-      e.preventDefault()
-      const data = new FormData(document.querySelector('#patchSlide'))
-      return mysql.patch('PATCH_slide', data).then((res) => {
+    patchProduct (e) {
+      const data = new FormData(document.querySelector('#editProduct'))
+      mysql.patch('PATCH_product', data).then((res) => {
         if (res) {
           this.trueAlert()
-          this.getSlide()
-        } else {
-          this.errAlert()
-        }
+          this.$bvModal.hide('edit_Product_Modal')
+          document.querySelector('#editProduct').reset()
+          this.uploadFile = this.$options.data().uploadFile
+          this.edit = this.$options.data().edit
+          this.getTable(this.select)
+        } else this.errAlert()
       })
     },
     postProduct (e) {
-      e.preventDefault()
       if (this.uploadFile.num < 3) return this.errAlert('請上傳 3 張圖片')
       const data = new FormData(document.querySelector('#newProduct'))
       mysql.post('POST_product', data).then((res) => {

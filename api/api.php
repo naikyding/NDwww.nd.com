@@ -288,6 +288,25 @@ switch ($_GET['do']) {
     $res = $db->query('INSERT INTO '.$_POST['table'].' ('.$index.') VALUES ('.$value.') ;');
     echo $res = ($res)?true:false;
   break;
+  case 'PATCH_product':
+    $data = '';
+    foreach($_POST as $key => $val){
+      if($key !== 'id' && $key !== 'table'){
+        $data .= is_numeric($val)?$key.'='.$val.', ':$key.'="'.$val.'", ';
+      }
+    }
+    if(!empty($_FILES['img']['name'][0])) { // 有修改照片
+      foreach($_FILES['img']['name'] as $key => $val){
+        $data .= 'img'.($key+1).'="'.$val.'", '; 
+        copy($_FILES['img']['tmp_name'][$key], '../images/'.$_POST['table'].'/'.$val);
+      }
+    }
+    // NO UPLOAD IMG
+    // echo $sql = 'UPDATE '.$_POST['table'].' SET '.substr($data, 0, -2).' WHERE id=? ;';
+    $sql = $db->prepare('UPDATE '.$_POST['table'].' SET '.substr($data, 0, -2).' WHERE id=? ;');
+    $res = $sql->execute([$_POST['id']]);
+    echo $res = ($res)?true:false;
+  break;
   default:
     # code...
   break;
