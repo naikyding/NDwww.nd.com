@@ -27,7 +27,7 @@ const mysql = {
     if (!id) return false
     return axios.post(this.url + toItem, JSON.stringify(id)).then((res) => {
       return res.data
-      // console.log(res.data)
+    // console.log(res.data)
     })
   }
 }

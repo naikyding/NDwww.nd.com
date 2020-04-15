@@ -3,7 +3,9 @@
 
     <!-- nav -->
     <nav class="navbar navTop fixed-top navbar-expand-lg navbar-light bg-light py-3 px-4">
-      <h5 class="mb-0">後台管理系統</h5>
+      <router-link to="/admin" class="text-decoration-none text-dark" @click.native="sidebar.clickItem = ''">
+        <h5 class="mb-0">後台管理系統</h5>
+      </router-link>
       <button type="button" class="btn ml-3 logOutbtn">登 出</button>
       <h4 class="itemText mx-auto mb-0"><span v-if="sidebar.clickItem !== 'admin'">{{ sidebar.clickItem }}</span></h4>
       <router-link to="/" class="navbar-brand mr-0" ><h2 class="mb-0">NIKEDIN</h2></router-link>
@@ -40,7 +42,6 @@ export default {
     }
   }),
   computed: {
-
   },
   created () {
     this.sidebar.clickItem = this.$route.name

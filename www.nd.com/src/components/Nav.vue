@@ -21,8 +21,9 @@
             <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
           </b-nav-form> -->
 
-          <b-nav-item href="javascript:;">
+          <b-nav-item href="javascript:;" >
             <b-icon icon="search" ></b-icon>
+            <input type="text" v-model.trim="keyword" @keydown.enter="sendKeyword">
             Search</b-nav-item>
           <b-nav-item href="javascript:;">
             <b-icon icon="geo-alt" ></b-icon>
@@ -382,13 +383,18 @@ export default {
       userId: '',
       psw: '',
       remember: false
-    }
+    },
+    keyword: ''
   }),
   created () {
     this.cartListSelect()
     this.accChk()
+    this.keyword = this.$store.state.search.keyword
   },
   computed: {
+    keyword_state () {
+      return this.$store.state.search.keyword
+    },
     orderCart () {
       return this.$store.state.orderCart
     },
@@ -419,6 +425,9 @@ export default {
     }
   },
   watch: {
+    keyword_state (newItem) {
+      this.keyword = newItem
+    },
     'log.userId' (newVal) {
       return this.$store.dispatch('accCheck', this.log.userId)
     },
@@ -470,6 +479,13 @@ export default {
     },
     signOut () {
       this.$store.dispatch('logOut')
+    },
+    sendKeyword () {
+      this.$store.commit('SET_KEYWORD', this.keyword)
+      if (this.$route.path === '/search') return false
+      this.$router.push({ path: '/search' })
+      this.keyword = ''
+      // this.$emit('keywordSend', this.keyword)
     }
   }
 }

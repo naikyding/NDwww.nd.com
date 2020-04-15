@@ -378,7 +378,7 @@ export default {
     },
     patchItem (id) {
       const editData = this.data.filter(item => item.id === id)
-      this.edit = editData[0]
+      this.edit = Object.assign({}, editData[0])
       this.$bvModal.show('edit_Product_Modal')
     },
     patchProduct (e) {
@@ -463,18 +463,20 @@ export default {
         if (!result.value) return false
         // DELETE FUNCTION ||
         const action = fun(doItem, id, this.select)
-        if (action) {
-          this.$swal.fire({
-            icon: 'success',
-            title: 'Deleted!',
-            text: 'Your file has been deleted.',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          this.getTable(this.select)
-        } else {
-          this.errAlert()
-        }
+        action.then((res) => {
+          if (res) {
+            this.$swal.fire({
+              icon: 'success',
+              title: 'Deleted!',
+              text: 'Your file has been deleted.',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            this.getTable(this.select)
+          } else {
+            this.errAlert()
+          }
+        })
       })
     }
   }

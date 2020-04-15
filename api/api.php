@@ -226,7 +226,6 @@ switch ($_GET['do']) {
   case 'GET_product':
     $sql = $db->query('SELECT * FROM '.$_GET['table'].' WHERE 1 ;');
     $data;
-    $sizeArray;
     function size($array, $size){
       global $sizeArray;
       if(!empty($array[$size])){
@@ -235,6 +234,7 @@ switch ($_GET['do']) {
       }
     }
     foreach($sql->fetchAll() as $rows) {
+      $sizeArray = [];
       size($rows, 'XS');
       size($rows, 'S');
       size($rows, 'M');
@@ -263,7 +263,7 @@ switch ($_GET['do']) {
   case 'DELETE_product':
     foreach($_POST as $key => $val) {
       $data = json_decode($key, true);
-      $sql = $db->prepare('DELETE FROM '.$data['table'].' WHERE id =? ;');
+      $sql = $db->prepare('DELETE FROM '.$data['table'].' WHERE id=? ;');
       $res = $sql->execute([$data['id']]);
       echo $res;
     }
@@ -306,6 +306,45 @@ switch ($_GET['do']) {
     $sql = $db->prepare('UPDATE '.$_POST['table'].' SET '.substr($data, 0, -2).' WHERE id=? ;');
     $res = $sql->execute([$_POST['id']]);
     echo $res = ($res)?true:false;
+  break;
+  // eventMail
+  case 'GET_eventMail':
+    $sql = $db->query('SELECT * FROM eventMail WHERE 1 ;');
+    $data;
+    foreach($sql->fetchAll() as $rows){
+      $data[] = $rows;
+    }
+    echo json_encode($data);
+  break;
+  case 'DELETE_eventMail':
+    // print_r($_POST);
+    foreach($_POST as $id => $val) {
+      $res = $db->query('DELETE FROM eventMail WHERE id ='.$id.' ;');
+      echo $res = ($res)?true:false;
+    }
+  break;
+  case 'PATCH_eventMail':
+    foreach($_POST as $id => $val) {
+      $sql = $db->prepare('UPDATE eventMail SET state=1, sendDate = NOW() WHERE id=?');
+      $res = $sql->execute([$id]);
+      echo $res = ($res)?true:false;
+    }
+  break;
+  case 'POST_eventMail':
+    $sql = $db->prepare('INSERT INTO eventMail (id, state, mail, date) VALUES (null, 0, ?, NOW()) ;');
+    $res = $sql->execute([$_POST['eventMail']]);
+    echo $res = ($res)?true:false;
+  break;
+  // SEARCH EV
+  case 'search_table':
+    $keyWord = '%'.$_POST['keyword'].'%';
+    $sql = $db->prepare('SELECT * FROM ( SELECT * FROM MEN UNION SELECT * FROM WOMEN UNION SELECT * FROM KIDS ) as data WHERE ( data.title LIKE ? OR data.details LIKE ? OR data.tag LIKE ? )');
+    $sql->execute([$keyWord, $keyWord, $keyWord]);
+    $data = [];
+    foreach($sql->fetchAll() as $rows){
+      $data[] = $rows;
+    }
+    echo $data = json_encode($data);
   break;
   default:
     # code...

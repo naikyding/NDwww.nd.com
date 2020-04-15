@@ -1,83 +1,37 @@
 <template >
   <div class="tableEvent mx-5">
-    <!-- Plus Item Modal -->
-    <div>
-      <!-- modal -->
-      <b-modal id="newSlide_Modal" centered title="NEW SLIDE" hide-footer>
-        <div class="px-3">
-          <form id="newSlide" enctype="multipart/form-data" @submit="postSlide">
 
-            <!-- img Display -->
-            <div v-if="uploadFile.url" class="text-center p-3">
-              <img class="slideImg text-center" :src="uploadFile.url" >
-            </div>
-
-            <!-- inputArea -->
-            <div class="form-group">
-              <label for="slideTitle">標題</label>
-              <input type="text" name="title" class="form-control" id="slideTitle">
-            </div>
-            <div class="form-group">
-              <label for="slideInfo">說明</label>
-              <textarea type="text" name="info" id="slideInfo" class="form-control"></textarea>
-            </div>
-            <!-- uploadPhoto -->
-            <div class="input-group">
-              <label class="btn btn-secondary w-100">
-                <input @change="uploadImg" type="file" name="img" accept="image/*" hidden >
-                <i class="fas fa-arrow-circle-up"></i>上傳商品圖片
-              </label>
-              <span v-if="!uploadFile.state" class="text-small">請選取 1 個檔案</span>
-              <span v-else class="text-small">已夾帶: {{ uploadFile.name }}</span>
-            </div>
-
-            <!-- footer Button -->
-            <div class="modal-footer justify-content-around mt-2">
-              <button type="button" class="btn btn-outline-danger">關 閉</button>
-              <button type="submit" class="btn btn-lg btn-primary">送 出</button>
-              <button type="reset" @click="fileReset" class="btn btn-outline-secondary">重 寫</button>
-            </div>
-
-          </form>
-        </div>
-      </b-modal>
-    </div>
     <!-- slide Banner -->
-    <form id="patchSlide" @submit="patchSlide" enctype="multipart/form-data">
-      <table class="table table-hover text-center mt-2" id="landingPageArea">
-        <thead class="thead-light">
-          <tr>
-            <th scope="col">顯示</th>
-            <th scope="col">圖片</th>
-            <th scope="col">標題</th>
-            <th scope="col">說明</th>
-            <th scope="col" ><button type="button" v-b-modal.newSlide_Modal class="btn plusBtn"><b-icon-plus></b-icon-plus></button></th>
-            </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(item, index) in data" :key="item.id">
-            <td>
-              <input :name="`dsp[${item.id}]`" type="checkbox" v-model="data[index].dsp">
-              <input name="id" type="text" :value="slideSelected" hidden>
-            </td>
-            <td>
-              <!-- <img :src="require(`../assets/img/slide/${item.img}`)" :alt="item.title" > -->
-              <img :src="`/images/slide/${item.img}`" width="200px">
-              <input :name="`img[${item.id}]`" type="text" :value="item.img" hidden>
-            </td>
-            <td>
-              <input class="form-control" :name="`title[${item.id}]`" type="text" v-model="data[index].title">
-            <td>
-              <textarea class="form-control" :name="`info[${item.id}]`" rows="3" v-model="data[index].info"></textarea>
-            </td>
-            <td>
-              <p class="my-3"><button type="submit" class="btn btn-secondary" @click="slideSelected = item.id"><b-icon-arrow-repeat></b-icon-arrow-repeat></button></p>
-              <p class="my-3"><button type="button" class="btn btn-danger" @click="delectAlert('DELETE_slide', item.id, deleteSlide)"><b-icon-trash></b-icon-trash></button></p>
-            </td>
+    <table class="table table-hover text-center mt-2" id="landingPageArea">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">狀態</th>
+          <th scope="col">信箱</th>
+          <th scope="col">索取時間</th>
+          <th scope="col">處理時間</th>
+          <th scope="col" > - </th>
           </tr>
-        </tbody>
-      </table>
-    </form>
+      </thead>
+      <tbody>
+        <tr v-for="item in data" :key="item.id">
+          <td>
+            <select @change="patchEventMail(item.id)" class="text-white" :class="{ 'bg-success': item.state == 1, 'bg-danger': item.state == 0 }">
+              <option :selected="item.state == 1">處理完成</option>
+              <option :selected="item.state == 0">尚未處理</option>
+            </select>
+          </td>
+          <td class="text-right">
+            <span :id="`mail_${item.id}`">{{ item.mail }} </span>
+            <b-button variant="outline-primary" @click.stop.prevent="copyEv(item.id)"><b-icon-files></b-icon-files></b-button>
+          </td>
+          <td>{{ item.date }}</td>
+          <td>{{ item.sendDate?item.sendDate:' - ' }}</td>
+          <td>
+            <p class="my-3"><button type="button" class="btn btn-danger" @click="delectAlert('DELETE_eventMail', item.id, deleteEventMail)"><b-icon-trash></b-icon-trash></button></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -96,61 +50,44 @@ export default {
     }
   }),
   created () {
-    this.getSlide()
+    this.getMail()
   },
   methods: {
     // Slide Ev
-    getSlide () {
-      mysql.get('GET_slide').then((res) => {
+    getMail () {
+      mysql.get('GET_eventMail').then((res) => {
+        // console.log(res)
         this.data = res
       })
     },
-    deleteSlide (doItem, id) {
-      return mysql.delete(doItem, id).then((res) => {
-        if (res) {
-          this.getSlide()
-          return true
-        }
-      })
+    deleteEventMail (doItem, id) {
+      return mysql.delete(doItem, id)
     },
-    patchSlide (e) {
-      e.preventDefault()
-      const data = new FormData(document.querySelector('#patchSlide'))
-      return mysql.patch('PATCH_slide', data).then((res) => {
+    patchEventMail (id) {
+      mysql.patch('PATCH_eventMail', id).then((res) => {
         if (res) {
-          this.trueAlert()
-          this.getSlide()
+          this.trueAlert('已更新狀態')
+          this.getMail()
         } else {
           this.errAlert()
         }
       })
     },
-    postSlide (e) {
-      e.preventDefault()
-      const data = new FormData(document.querySelector('#newSlide'))
-      mysql.post('POST_slide', data).then((res) => {
-        if (res) {
-          this.trueAlert()
-          this.$bvModal.hide('newSlide_Modal')
-          document.querySelector('#newSlide').reset()
-          this.uploadFile = this.$options.data().uploadFile
-          this.getSlide()
-        } else this.errAlert()
-      })
-    },
-    uploadImg (e) {
-      this.uploadFile.name = e.target.files[0].name
-      this.uploadFile.state = true
-      this.uploadFile.url = URL.createObjectURL(e.target.files[0])
-    },
-    fileReset () {
-      this.uploadFile = this.$options.data().uploadFile
+    copyEv (id) {
+      const item = document.querySelector(`#mail_${id}`)
+      // 選取物件文字
+      getSelection().selectAllChildren(item)
+      // copy
+      document.execCommand('copy')
+      // 再選取別的空物件->去除選取框
+      getSelection().selectAllChildren(document.querySelector('button'))
+      this.trueAlert(`已復製 ${item.innerText}`)
     },
     // Alert Ev
-    trueAlert () {
+    trueAlert (text = 'Your work has been saved') {
       this.$swal.fire({
         icon: 'success',
-        title: 'Your work has been saved',
+        title: text,
         showConfirmButton: false,
         timer: 1500
       })
@@ -184,18 +121,20 @@ export default {
         if (!result.value) return false
         // DELETE FUNCTION ||
         const action = fun(doItem, id)
-        if (action) {
-          this.$swal.fire({
-            icon: 'success',
-            title: 'Deleted!',
-            text: 'Your file has been deleted.',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          this.getSlide()
-        } else {
-          this.errAlert()
-        }
+        action.then((res) => {
+          if (res) {
+            this.$swal.fire({
+              icon: 'success',
+              title: 'Deleted!',
+              text: 'Your file has been deleted.',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            this.getMail()
+          } else {
+            this.errAlert()
+          }
+        })
       })
     }
   }
@@ -221,12 +160,12 @@ export default {
   color:#fff;
 }
 
-.text-small{
-  font-size: .7rem;
-}
-
-img.slideImg{
-  max-width: 400px;
-  height: auto;
+select{
+  text-align: center;
+  text-align-last: center;
+  width: 7rem;
+  height: 3rem;
+  border: 1px solid #ddd;
+  background-color: #fff;
 }
 </style>

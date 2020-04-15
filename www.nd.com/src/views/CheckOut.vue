@@ -127,6 +127,9 @@ export default {
       return subTotal
     }
   },
+  created () {
+    window.scrollTo(0, 0)
+  },
   mounted () {
   },
   methods: {
@@ -209,8 +212,5 @@ td img{
   cursor: pointer;
   font-size: 1rem;
   line-height: 30px;
-}
-.tableContent{
-  overflow: auto;
 }
 </style>

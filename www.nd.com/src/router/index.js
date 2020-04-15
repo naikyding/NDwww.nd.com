@@ -5,6 +5,8 @@ import Products from '../views/Products.vue'
 import Shop from '../views/Shop.vue'
 import CheckOut from '../views/CheckOut.vue'
 import Admin from '../views/Admin.vue'
+import Search from '../views/Search.vue'
+// children
 import TableSlide from '../components/TableSlide.vue'
 import TableEvent from '../components/TableEvent.vue'
 import TableProduct from '../components/TableProduct.vue'
@@ -25,21 +27,31 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
+  // 商品頁面
   {
     path: '/products/:table/:name',
     name: 'products',
     component: Products
   },
+  // 類別商品頁面
   {
     path: '/shop/:sex',
     name: 'shop',
     component: Shop
   },
+  // 結帳頁面
   {
     path: '/checkout',
     name: 'checkout',
     component: CheckOut
   },
+  // 搜尋頁面
+  {
+    path: '/search',
+    name: 'search',
+    component: Search
+  },
+  // 後台管理
   {
     path: '/admin',
     name: 'admin',
@@ -62,6 +74,7 @@ const routes = [
       }
     ]
   },
+  // 以上除外都排入 首頁
   {
     path: '*',
     redirect: './'

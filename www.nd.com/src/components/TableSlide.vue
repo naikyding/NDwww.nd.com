@@ -106,12 +106,7 @@ export default {
       })
     },
     deleteSlide (doItem, id) {
-      return mysql.delete(doItem, id).then((res) => {
-        if (res) {
-          this.getSlide()
-          return true
-        }
-      })
+      return mysql.delete(doItem, id)
     },
     patchSlide (e) {
       e.preventDefault()
@@ -184,18 +179,20 @@ export default {
         if (!result.value) return false
         // DELETE FUNCTION ||
         const action = fun(doItem, id)
-        if (action) {
-          this.$swal.fire({
-            icon: 'success',
-            title: 'Deleted!',
-            text: 'Your file has been deleted.',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          this.getSlide()
-        } else {
-          this.errAlert()
-        }
+        action.then((res) => {
+          if (res) {
+            this.$swal.fire({
+              icon: 'success',
+              title: 'Deleted!',
+              text: 'Your file has been deleted.',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            this.getSlide()
+          } else {
+            this.errAlert()
+          }
+        })
       })
     }
   }

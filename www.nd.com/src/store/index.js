@@ -20,9 +20,18 @@ export default new Vuex.Store({
     logIn: {
       userName: '',
       token: null
+    },
+    eventMail: {
+      state: false
+    },
+    search: {
+      keyword: ''
     }
   },
   mutations: {
+    SET_KEYWORD (state, text) {
+      state.search.keyword = text
+    },
     SLIDE_SELECT_SET (state, data) {
       state.slide = data
     },
@@ -54,6 +63,9 @@ export default new Vuex.Store({
       state.log = null
       state.user.id = null
       state.orderCart = []
+    },
+    eventMailEv (state, data) {
+      state.eventMail.state = data
     }
   },
   actions: {
