@@ -82,7 +82,7 @@
               <input name="size" type="text" class="cartSize" hidden>
               <li class="mt-2 d-flex">
                 <div v-for="(item, index)  in data.size" :key="index">
-                  <div v-if="item === 'XS' || item === 'S' || item === 'M' || item === 'L' || item === 'XL' || item === 'XXL'" class="mr-3 sizeSelectA" @click="sizeSelectEv">
+                  <div v-if="item === 'XS' || item === 'S' || item === 'M' || item === 'L' || item === 'XL' || item === 'XXL'" class="mr-2 sizeSelectA" @click="sizeSelectEv">
                     <div class="size mr-2 text-center" :class="{'sizeSelect':item === orderCart.size}" >{{ item }}</div>
                   </div>
                 </div>

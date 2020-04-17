@@ -17,7 +17,10 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      title: 'NIKEDIN'
+    }
   },
   {
     path: '/about',
@@ -31,46 +34,62 @@ const routes = [
   {
     path: '/products/:table/:name',
     name: 'products',
-    component: Products
+    component: Products,
+    meta: {
+      title: 'NIKEDIN ∣ PRODUCT'
+    }
   },
   // 類別商品頁面
   {
     path: '/shop/:sex',
     name: 'shop',
-    component: Shop
+    component: Shop,
+    meta: {
+      title: 'NIKEDIN ∣ SHOP'
+    }
   },
   // 結帳頁面
   {
     path: '/checkout',
     name: 'checkout',
-    component: CheckOut
+    component: CheckOut,
+    meta: { title: 'NIKEDIN ∣ CHECK OUT' }
   },
   // 搜尋頁面
   {
     path: '/search',
     name: 'search',
-    component: Search
+    component: Search,
+    meta: {
+      title: 'NIKEDIN ∣ SEARCH'
+    }
   },
   // 後台管理
   {
     path: '/admin',
     name: 'admin',
     component: Admin,
+    meta: {
+      title: 'NIKEDIN ∣ ADMIN'
+    },
     children: [
       {
         path: '首頁管理',
         name: '首頁管理',
-        component: TableSlide
+        component: TableSlide,
+        meta: { title: 'NIKEDIN ∣ 首頁管理' }
       },
       {
         path: '商品管理',
         name: '商品管理',
-        component: TableProduct
+        component: TableProduct,
+        meta: { title: 'NIKEDIN ∣ 商品管理' }
       },
       {
         path: '優惠活動',
         name: '優惠活動',
-        component: TableEvent
+        component: TableEvent,
+        meta: { title: 'NIKEDIN ∣ 優惠活動' }
       }
     ]
   },
@@ -82,7 +101,14 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  // mode: 'history',
   routes
+})
+
+// META TITLE EV
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+  next()
 })
 
 export default router

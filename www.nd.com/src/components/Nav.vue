@@ -100,7 +100,7 @@
           </ul>
           <div class=" ml-auto menuImg" >
             <a href="javascript:;">
-              <img src="https://www.calvinklein.com/sgstatic/on/demandware.static/-/Sites-calvinklein-other-navigation/default/dw80acd4ab/CK1-reskin-dropdown-menu-banner.jpg">
+              <img src="https://www.calvinklein.com/sgstatic/on/demandware.static/-/Sites-calvinklein-other-navigation/default/dw62d6c438/200327-jeans-dropdown-menu-banner-SG.jpg">
             </a>
           </div>
         </div>
@@ -142,7 +142,7 @@
             <li><a class="text-secondary itemText" href="javascript:;">Sunglasses</a></li>
           </ul>
           <div class=" ml-auto menuImg" >
-            <img src="https://www.calvinklein.com/sgstatic/on/demandware.static/-/Sites-calvinklein-other-navigation/default/dwc03dcfa0/CK1-reskin-dropdown-menu-banner-2.jpg">
+            <img src="https://www.calvinklein.com/sgstatic/on/demandware.static/-/Sites-calvinklein-other-navigation/default/dw9eb2e077/200327-jeans-dropdown-menu-banner-SG2.jpg">
           </div>
         </div>
       </div>
@@ -183,7 +183,7 @@
             <li><a class="text-secondary itemText" href="javascript:;">Sleepwear</a></li>
           </ul>
           <div class=" ml-auto menuImg" >
-            <img src="https://www.calvinklein.com/sgstatic/on/demandware.static/-/Sites-calvinklein-other-navigation/default/dwf499e027/DEC%2027%20-%20dropdown%20menu%20banner%20KIDS.jpg">
+            <img src="https://www.calvinklein.com/sgstatic/on/demandware.static/-/Sites-calvinklein-other-navigation/default/dwa5507956/SP20-dropdown-menu-banner-CKJK.jpg">
           </div>
         </div>
       </div>
@@ -225,7 +225,7 @@
             <li><a class="text-secondary itemText" href="javascript:;">Sunglasses</a></li>
           </ul>
           <div class=" ml-auto menuImg" >
-            <img src="https://www.calvinklein.com/sgstatic/on/demandware.static/-/Sites-calvinklein-other-navigation/default/dwcf54a478/DEC%2027%20-%20dropdown%20menu%20banner%20CKP.jpg">
+            <img src="https://www.calvinklein.com/sgstatic/on/demandware.static/-/Sites-calvinklein-other-navigation/default/dw58277f21/SP20-dropdown-menu-banner-CKP.jpg">
           </div>
         </div>
       </div>
