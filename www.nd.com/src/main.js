@@ -49,6 +49,13 @@ new Vue({
   mounted () {
     // Get localStorage -> OrderCart List
     this.$store.dispatch('ORDER_CART_LIST_GET')
+    const acc = {
+      userAcc: 'naiky',
+      userPsw: '1234',
+      adminAcc: 'admin',
+      adminPsw: '1234'
+    }
+    console.log(acc)
   },
   render: h => h(App)
 }).$mount('#app')

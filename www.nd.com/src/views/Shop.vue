@@ -35,8 +35,8 @@
 
               <div class="col" v-for="(item, index) in data.items" :key="index">
                 <router-link :to="'/products/'+$route.params.sex+'/'+item.title.toLowerCase().split(' ').join('-')" class="text-reset text-decoration-none itemCard" @mouseenter.native="imgChange(index)" @mouseleave.native="imgChange(-1)">
-                  <img v-if="imgAction !== index" :src="`/images/${data.tableName.toUpperCase()}/${item.img1}`" width="100%" :alt="item.title" >
-                  <img v-else-if="imgAction === index" :src="`/images/${data.tableName.toUpperCase()}/${item.img2}`" width="100%" :alt="item.title" >
+                  <img v-if="imgAction !== index" :src="`images/${data.tableName.toUpperCase()}/${item.img1}`" width="100%" :alt="item.title" >
+                  <img v-else-if="imgAction === index" :src="`images/${data.tableName.toUpperCase()}/${item.img2}`" width="100%" :alt="item.title" >
                   <div class="titleItem ">{{ item.title }}</div>
                   <div class="tagItem text-secondary"><span class="border-bottom">{{ item.tag }}</span></div>
                   <div class="priceItem text-secondary"><span  class="">NT$ </span><span >{{ item.price }}</span></div>

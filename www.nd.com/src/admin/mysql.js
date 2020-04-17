@@ -6,6 +6,7 @@ Vue.use(VueAxios, axios)
 
 const mysql = {
   url: '/api/Github/ND_Vue/api/api.php?do=',
+  // url: 'api/api.php?do=',
   get (doItem) {
     return axios.get(this.url + doItem).then((res) => {
       return res.data
@@ -27,7 +28,6 @@ const mysql = {
     if (!id) return false
     return axios.post(this.url + toItem, JSON.stringify(id)).then((res) => {
       return res.data
-    // console.log(res.data)
     })
   }
 }

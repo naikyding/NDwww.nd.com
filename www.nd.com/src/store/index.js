@@ -140,9 +140,11 @@ export default new Vuex.Store({
           data.forEach((item, index) => {
             list[index] = item
           })
+          if (res.userName === 'admin') return false
           mysql.post(`SET_listToSession&user=${res.userName}`, JSON.stringify({ orderCart: list }), 'json').then((res) => {
           })
         } else {
+          if (res.userName === 'admin') return false
           mysql.get(`GET_listToSession&user=${res.userName}`).then((results) => {
             const list = results
             list.forEach(item => {

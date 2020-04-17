@@ -26,7 +26,7 @@
               <tr v-for="item in data" :key="item.id">
                 <td >
                   <router-link :to="`/products/${select}/${item.title.toLowerCase().split(' ').join('-')}`">
-                    <img class="w100px" :src="`/images/${select}/${item.img['img1']}`">
+                    <img class="w100px" :src="`images/${select}/${item.img['img1']}`">
                   </router-link>
                 </td>
                 <td>{{ item.title }}</td>
@@ -276,7 +276,7 @@
                   <!-- uploadPhoto -->
                   <div class="input-group d-block">
                     <div v-if="uploadFile.num === 0" class="row justify-content-around mx-1">
-                      <div class="mx-1" v-for="(item, index) in edit.img" :key="index"><img :src="`/images/${select}/${item}`" width="100px"></div>
+                      <div class="mx-1" v-for="(item, index) in edit.img" :key="index"><img :src="`images/${select}/${item}`" width="100px"></div>
                     </div>
                     <div v-else class="row justify-content-around mx-1">
                       <div class="mx-1" v-for="(item, index) in uploadFile.img" :key="index"><img :src="uploadFile.img[index]" width="100px"></div>
@@ -351,6 +351,7 @@ export default {
     // Product Ev
     getPorduct (e) {
       this.select = e.target.innerText
+      this.data = this.$options.data().data
       mysql.get(`GET_product&table=${e.target.innerText}`).then((res) => {
         this.data = res
       })

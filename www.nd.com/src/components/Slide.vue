@@ -21,7 +21,7 @@
         <template v-slot:img class="">
           <img
             class="d-block img-fluid"
-            :src="`/images/slide/${slide.img}`"
+            :src="`images/slide/${slide.img}`"
             :alt="slide.title"
             >
         </template>

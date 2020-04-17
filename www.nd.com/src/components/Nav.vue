@@ -307,7 +307,7 @@
             </a>
           </div>
           <div class="img pr-1 col-4">
-            <img class="mb-2" :src="`/images/${item.table}/${item.img}`" :alt="item.title" width="100%">
+            <img class="mb-2" :src="`images/${item.table}/${item.img}`" :alt="item.title" width="100%">
           </div>
           <div class="text col-8 text-left pl-0">
             <ul class="cartList">
@@ -350,7 +350,7 @@
           <b-form class="px-4" @submit.stop.prevent>
             <!-- userId -->
             <label for="feedback-user">User ID</label>
-            <b-input v-model.trim="log.userId" class="acc" :state="userIdState"></b-input>
+            <b-input v-model.trim="log.userId" class="acc" :state="userIdState" placeholder="check console"></b-input>
             <b-form-invalid-feedback :state="userIdState">
               Please enter valid NIKEDIN Member ID or email
             </b-form-invalid-feedback>

@@ -38,7 +38,7 @@
           <tr class="text-left" v-for="(item, index) in orderCart" :key="index">
             <td>
               <router-link :to="'products/'+item.table.toLowerCase()+'/'+item.title.toLowerCase().split(' ').join('-')">
-                <img :src="`/images/${item.table}/${item.img}`"  :alt="item.title">
+                <img :src="`images/${item.table}/${item.img}`"  :alt="item.title">
               </router-link>
             </td>
             <td>

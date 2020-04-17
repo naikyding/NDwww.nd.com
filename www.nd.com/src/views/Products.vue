@@ -46,7 +46,7 @@
             <template v-slot:img class="position-sticky">
               <img
                 class="d-block img-fluid "
-                :src="`/images/${$route.params.table.toUpperCase()}/${item}`"
+                :src="`images/${$route.params.table.toUpperCase()}/${item}`"
                 :alt="slide.title"
               >
             </template>
@@ -82,16 +82,16 @@
               <input name="size" type="text" class="cartSize" hidden>
               <li class="mt-2 d-flex">
                 <div v-for="(item, index)  in data.size" :key="index">
-                  <a v-if="item === 'XS' || item === 'S' || item === 'M' || item === 'L' || item === 'XL' || item === 'XXL'" class="mr-3 sizeSelectA" @click="sizeSelectEv">
+                  <div v-if="item === 'XS' || item === 'S' || item === 'M' || item === 'L' || item === 'XL' || item === 'XXL'" class="mr-3 sizeSelectA" @click="sizeSelectEv">
                     <div class="size mr-2 text-center" :class="{'sizeSelect':item === orderCart.size}" >{{ item }}</div>
-                  </a>
+                  </div>
                 </div>
               </li>
               <li>
                 <!-- stock -->
                 <span class="text-danger" v-if="overStockErtxt !== ''"> {{ overStockErtxt }}</span>
-                <div class="product_stock" v-if="orderCart.size !== ''">
-                  <span id="stockNum" style="color:#888">{{ inStockNum }}</span>
+                <div class="product_stock text-secondary mt-2" v-if="orderCart.size !== ''">
+                  <span id="stockNum">{{ inStockNum }}</span>
                 </div>
               </li>
             </ul>
@@ -359,5 +359,13 @@ object-position: 50% 0px;
 }
 #carousel{
   top:130px;
+}
+
+.color_black{
+  cursor: pointer;
+  padding: 4px;
+  display: inline-block;
+  border: 1px solid #aaa;
+  border-radius: 50%;
 }
 </style>

@@ -34,8 +34,8 @@
                 <!-- search items -->
                 <div class="col text-left" v-for="(item, index) in data" :key="index">
                   <router-link :to="`/products/${item.tableName.toLowerCase()}/${item.title.toLowerCase().split(' ').join('-')}`" class="text-reset text-decoration-none itemCard" @mouseenter.native="imgAction = index" @mouseleave.native="imgAction = -1">
-                    <img v-if="imgAction !== index" :src="`/images/${item.tableName}/${item.img1}`" width="100%" :alt="item.title">
-                    <img v-else-if="imgAction === index" :src="`/images/${item.tableName}/${item.img2}`" width="100%" :alt="item.title">
+                    <img v-if="imgAction !== index" :src="`images/${item.tableName}/${item.img1}`" width="100%" :alt="item.title">
+                    <img v-else-if="imgAction === index" :src="`images/${item.tableName}/${item.img2}`" width="100%" :alt="item.title">
                     <div class="titleItem">{{ item.title }}</div>
                     <div class="tagItem text-secondary"><span class="border-bottom">{{ item.tag }}</span></div>
                     <div class="priceItem text-secondary"><span class="">NT$ {{ item.sales_price }}</span></div>

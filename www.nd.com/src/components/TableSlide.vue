@@ -61,7 +61,7 @@
               <input name="id" type="text" :value="slideSelected" hidden>
             </td>
             <td>
-              <img :src="`/images/slide/${item.img}`" width="200px">
+              <img :src="`images/slide/${item.img}`" width="200px">
               <input :name="`img[${item.id}]`" type="text" :value="item.img" hidden>
             </td>
             <td>
