@@ -346,6 +346,11 @@ switch ($_GET['do']) {
     }
     echo $data = json_encode($data);
   break;
+  // ADMIN EV
+  case 'GET_admin':
+    print_r($_POST);
+    // $res = $db->query('SELECT ')
+  break;
   default:
     # code...
   break;

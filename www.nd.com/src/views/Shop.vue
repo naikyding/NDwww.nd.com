@@ -64,6 +64,7 @@
 import Nav from '@/components/Nav.vue'
 import Footer from '@/components/Footer.vue'
 import EventMail from '@/components/EventMail.vue'
+import mysql from '../admin/mysql.js'
 
 export default {
   name: 'Shop',
@@ -82,12 +83,11 @@ export default {
     productTable (newParams) {
       window.scrollTo(0, 0)
       const tableName = newParams.toUpperCase()
-      this.axios.get(`/api/Github/ND_Vue/api/api.php?do=selectTable&table=${tableName}`).then((res) => {
-      // this.axios.get(`api/api.php?do=selectTable&table=${tableName}`).then((res) => {
-        if (!res.data) return this.$router.replace({ path: '/' })
+      mysql.get(`selectTable&table=${tableName}`).then((res) => {
+        if (!res) return this.$router.replace({ path: '/' })
         const resDate = () => ({
           tableName: this.productTable,
-          items: res.data
+          items: res
         })
         this.data = resDate()
       })
@@ -95,13 +95,11 @@ export default {
   },
   created () {
     window.scrollTo(0, 0)
-    // const tableName = this.$route.params.sex.toUpperCase()
-    this.axios.get(`/api/Github/ND_Vue/api/api.php?do=selectTable&table=${this.productTable.toUpperCase()}`).then((res) => {
-    // this.axios.get(`api/api.php?do=selectTable&table=${this.productTable.toUpperCase()}`).then((res) => {
-      if (!res.data) return this.$router.replace({ path: '/' })
+    mysql.get(`selectTable&table=${this.productTable.toUpperCase()}`).then((res) => {
+      if (!res) return this.$router.replace({ path: '/' })
       const resDate = () => ({
         tableName: this.productTable,
-        items: res.data
+        items: res
       })
       this.data = resDate()
     })

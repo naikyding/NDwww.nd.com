@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import storage from '../storage/index.js'
+import mysql from '../admin/mysql.js'
 
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
@@ -70,9 +71,8 @@ export default new Vuex.Store({
   },
   actions: {
     SLIDE_SELECT (context) {
-      axios.get('/api/Github/ND_Vue/api/api.php?do=slide').then((res) => {
-      // axios.get('api/api.php?do=slide').then((res) => {
-        context.commit('SLIDE_SELECT_SET', res.data)
+      mysql.get('slide').then((res) => {
+        context.commit('SLIDE_SELECT_SET', res)
       })
     },
     ORDER_CART_LIST_GET (context) {
@@ -122,18 +122,17 @@ export default new Vuex.Store({
       storage.removeItem('orderCart', index)
     },
     accCheck (context, userId) {
-      axios.post('/api/Github/ND_Vue/api/api.php?do=accCheck', JSON.stringify({ userId })).then((res) => {
-      // axios.post('api/api.php?do=accCheck', JSON.stringify({ userId })).then((res) => {
-        if (!res.data) context.commit('userIdTrue', false)
+      mysql.post('accCheck', JSON.stringify({ userId })).then((res) => {
+        if (!res) context.commit('userIdTrue', false)
         else context.commit('userIdTrue', true)
       })
     },
     logIn (context, data) {
-      axios.post('/api/Github/ND_Vue/api/api.php?do=logIn', JSON.stringify(data[0])).then((res) => {
-      // axios.post('api/api.php?do=logIn', JSON.stringify(data[0])).then((res) => {
-        context.commit('ACC_Chk', res.data)
-        if (data[1]) storage.set('TOKEN', res.data.token)
-        if (!res.data) return false
+      mysql.post('logIn', JSON.stringify(data[0])).then((res) => {
+        context.commit('ACC_Chk', res)
+        // remember ACC
+        if (data[1]) storage.set('TOKEN', res.token)
+        if (!res) return false
         const cartData = storage.get('orderCart')
         if (cartData) {
           const data = storage.get('orderCart')
@@ -141,13 +140,11 @@ export default new Vuex.Store({
           data.forEach((item, index) => {
             list[index] = item
           })
-          axios.post(`/api/Github/ND_Vue/api/api.php?do=SET_listToSession&user=${res.data.userName}`, JSON.stringify({ orderCart: list }), 'json').then((res) => {
-          // axios.post(`api/api.php?do=SET_listToSession&user=${res.data.userName}`, JSON.stringify({ orderCart: list }), 'json').then((res) => {
+          mysql.post(`SET_listToSession&user=${res.userName}`, JSON.stringify({ orderCart: list }), 'json').then((res) => {
           })
         } else {
-          axios.get(`/api/Github/ND_Vue/api/api.php?do=GET_listToSession&user=${res.data.userName}`).then((res) => {
-          // axios.get(`api/api.php?do=GET_listToSession&user=${res.data.userName}`).then((res) => {
-            const list = res.data
+          mysql.get(`GET_listToSession&user=${res.userName}`).then((results) => {
+            const list = results
             list.forEach(item => {
               item.img = item.img.split('_').join('.')
               item.title = item.title.split('_').join(' ')
@@ -166,8 +163,7 @@ export default new Vuex.Store({
         data.forEach((item, index) => {
           list[index] = item
         })
-        axios.post(`/api/Github/ND_Vue/api/api.php?do=SET_listToSession&user=${this.state.logIn.userName}`, JSON.stringify({ orderCart: list }), 'json').then((res) => {
-        // axios.post(`api/api.php?do=SET_listToSession&user=${this.state.logIn.userName}`, JSON.stringify({ orderCart: list }), 'json').then((res) => {
+        mysql.post(`SET_listToSession&user=${this.state.logIn.userName}`, JSON.stringify({ orderCart: list }), 'json').then((res) => {
         })
       }
       storage.remove('TOKEN')
@@ -175,10 +171,9 @@ export default new Vuex.Store({
       context.commit('logOut_SET')
     },
     rememberAcc (context, token) {
-      axios.post('/api/Github/ND_Vue/api/api.php?do=rememberAcc', token).then((res) => {
-      // axios.post('api/api.php?do=rememberAcc', token).then((res) => {
-        if (!res.data) return false
-        context.commit('ACC_Chk', { userName: res.data, token })
+      mysql.post('rememberAcc', token).then((res) => {
+        if (!res) return false
+        context.commit('ACC_Chk', { userName: res, token })
       })
     }
   },

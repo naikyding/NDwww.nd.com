@@ -1,55 +1,65 @@
 <template >
   <div class="fixed-top">
-    <b-navbar toggleable="lg" type="light" variant="light" class="py-3">
-      <b-navbar-brand to="/" class="text-dark"><h2 class="mb-0">NIKEDIN</h2></b-navbar-brand>
+    <b-navbar toggleable="lg" type="light" class="py-3" :class="{ 'bg-black': !navShow, 'bg-light': navShow }">
+
+      <transition name="slide-search">
+        <div v-if="!navShow" class="searchBar w-100 text-center d-flex justify-content-center align-items-center">
+          <b-icon @click="sendKeyword" class="h4 mb-0 searchIcon" icon="search" ></b-icon>
+          <input class="mx-2" type="text" v-model.trim="keyword" placeholder="Search nd.com" @keydown.enter="sendKeyword">
+          <b-icon @click="navShow = !navShow" class="h4 mb-0 searchIcon" icon="X" ></b-icon>
+        </div>
+      </transition>
+
+      <transition name="slide-fade">
+        <b-navbar-brand v-if="navShow" to="/" class="text-dark"><h2 class="mb-0">NIKEDIN</h2></b-navbar-brand>
+      </transition>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav class="mx-auto">
-          <b-nav-item href="javascript:;" to="/shop/men" @mouseenter="navHover" @click="navleave"><div v-if="navName == 'MEN'" class="arrow"></div>MEN</b-nav-item>
-          <b-nav-item href="javascript:;" to="/shop/women" @mouseenter="navHover" @click="navleave"><div v-if="navName == 'WOMEN'" class="arrow"></div>WOMEN</b-nav-item>
-          <b-nav-item href="javascript:;" to="/shop/kids" @mouseenter="navHover" @click="navleave"><div v-if="navName == 'KIDS'" class="arrow"></div>KIDS</b-nav-item>
-          <b-nav-item href="javascript:;" @mouseenter="navHover" ><div v-if="navName == 'PERFORMANCE'" class="arrow"></div>PERFORMANCE</b-nav-item>
-          <b-nav-item href="javascript:;" @mouseenter="navHover"><div v-if="navName == 'SALE'" class="arrow"></div>SALE</b-nav-item>
-        </b-navbar-nav>
+      <transition name="slide-fade">
+        <b-collapse v-if="navShow" id="nav-collapse" is-nav>
+          <b-navbar-nav class="mx-auto">
+            <b-nav-item href="javascript:;" to="/shop/men" @mouseenter="navHover" @click="navleave"><div v-if="navName == 'MEN'" class="arrow"></div>MEN</b-nav-item>
+            <b-nav-item href="javascript:;" to="/shop/women" @mouseenter="navHover" @click="navleave"><div v-if="navName == 'WOMEN'" class="arrow"></div>WOMEN</b-nav-item>
+            <b-nav-item href="javascript:;" to="/shop/kids" @mouseenter="navHover" @click="navleave"><div v-if="navName == 'KIDS'" class="arrow"></div>KIDS</b-nav-item>
+            <b-nav-item href="javascript:;" @mouseenter="navHover"><div v-if="navName == 'PERFORMANCE'" class="arrow"></div>PERFORMANCE</b-nav-item>
+            <b-nav-item href="javascript:;" @mouseenter="navHover"><div v-if="navName == 'SALE'" class="arrow"></div>SALE</b-nav-item>
+          </b-navbar-nav>
 
-        <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
-          <!-- <b-nav-form>
-            <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
-            <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
-          </b-nav-form> -->
+          <!-- Right aligned nav items -->
+          <b-navbar-nav class="ml-auto">
 
-          <b-nav-item href="javascript:;" >
-            <b-icon icon="search" ></b-icon>
-            <input type="text" v-model.trim="keyword" @keydown.enter="sendKeyword">
-            Search</b-nav-item>
-          <b-nav-item href="javascript:;">
-            <b-icon icon="geo-alt" ></b-icon>
-            Store</b-nav-item>
-          <b-nav-item-dropdown right>
-            <!-- Using 'button-content' slot -->
-            <template v-slot:button-content v-if="!userName">
-              <b-icon icon="person"></b-icon>
-              User
-            </template>
-            <template v-slot:button-content v-else>
-              <b-icon icon="person"></b-icon>
-              {{ userName }}
-            </template>
-            <b-dropdown-item href="javascript:;">Profile</b-dropdown-item>
-            <b-dropdown-item href="javascript:;" v-b-modal.modal_logIn v-if="!userName">Sign In</b-dropdown-item>
-            <b-dropdown-item href="javascript:;" @click="signOut" v-else>Sign Out</b-dropdown-item>
-          </b-nav-item-dropdown>
+            <b-nav-item href="javascript:;" @click="navShow = !navShow" @mouseenter="navHover">
+              <b-icon icon="search"></b-icon>
+              Search
+            </b-nav-item>
+            <b-nav-item href="javascript:;">
+              <b-icon icon="geo-alt" ></b-icon>
+              Store</b-nav-item>
+            <b-nav-item-dropdown right>
+              <!-- Using 'button-content' slot -->
+              <template v-slot:button-content v-if="!userName">
+                <b-icon icon="person"></b-icon>
+                User
+              </template>
+              <template v-slot:button-content v-else>
+                <b-icon icon="person"></b-icon>
+                {{ userName }}
+              </template>
+              <b-dropdown-item href="javascript:;">Profile</b-dropdown-item>
+              <b-dropdown-item href="javascript:;" v-b-modal.modal_logIn v-if="!userName">Sign In</b-dropdown-item>
+              <b-dropdown-item href="javascript:;" to="/admin" v-else-if="userName == 'admin'">Admin</b-dropdown-item>
+              <b-dropdown-item href="javascript:;" @click="signOut" v-if="userName">Sign Out</b-dropdown-item>
+            </b-nav-item-dropdown>
 
-          <b-nav-item @click="show = !show">
-            <b-icon icon="bag"></b-icon>
-            <span class="totalNum" v-if="totalPrice.totalNum >= 1" >{{ totalPrice.totalNum }}</span>
-            Bag
-          </b-nav-item>
-        </b-navbar-nav>
-      </b-collapse>
+            <b-nav-item @click="show = !show">
+              <b-icon icon="bag"></b-icon>
+              <span class="totalNum" v-if="totalPrice.totalNum >= 1" >{{ totalPrice.totalNum }}</span>
+              Bag
+            </b-nav-item>
+          </b-navbar-nav>
+        </b-collapse>
+      </transition>
     </b-navbar>
 
     <!-- NavSide -->
@@ -332,11 +342,7 @@
 
   <!-- MODEL -->
   <div>
-    <b-modal id="modal_logIn" hide-header hide-footer centered >
-      <!-- title -->
-      <!-- <template v-slot:modal-title class="123">
-        LOG IN
-      </template> -->
+    <b-modal id="modal_logIn" hide-header hide-footer centered @change="changModal">
       <div>
         <div class="py-3 text-center"><h3 class="mt-0">LOG IN</h3></div>
         <!-- USER ID -->
@@ -344,7 +350,7 @@
           <b-form class="px-4" @submit.stop.prevent>
             <!-- userId -->
             <label for="feedback-user">User ID</label>
-            <b-input v-model.trim="log.userId" :state="userIdState"></b-input>
+            <b-input v-model.trim="log.userId" class="acc" :state="userIdState"></b-input>
             <b-form-invalid-feedback :state="userIdState">
               Please enter valid NIKEDIN Member ID or email
             </b-form-invalid-feedback>
@@ -376,6 +382,7 @@ import storage from '../storage/index.js'
 export default {
   name: 'Nav',
   data: () => ({
+    navShow: true,
     navName: '',
     show: false,
     setTimeoutId: '',
@@ -425,6 +432,20 @@ export default {
     }
   },
   watch: {
+    userName (newName) {
+      if (newName === 'admin') {
+        storage.set('TOKEN', this.$store.state.logIn.token)
+        this.$router.push({ path: '/admin' })
+      }
+    },
+    navShow (newState) {
+      if (!newState) {
+        this.$nextTick(() => {
+          document.querySelector('input.mx-2').focus()
+          this.navName = ''
+        })
+      }
+    },
     keyword_state (newItem) {
       this.keyword = newItem
     },
@@ -436,22 +457,21 @@ export default {
         this.$bvModal.hide('modal_logIn')
         this.log = this.$options.data().log
       }
-    },
-    orderCart () {
-      // this.show = true
-      // if (this.setTimeoutId !== '') this.clearTimeOut()
-      // const setTimeoutId = setTimeout(() => {
-      //   this.show = false
-      // }, 3000)
-      // this.setTimeoutId = setTimeoutId
     }
   },
   methods: {
+    changModal () {
+      setTimeout(() => {
+        document.querySelector('input.acc').focus()
+      }, 300)
+    },
     accChk () {
       const token = storage.get('TOKEN')
+      if (!token) return false
       this.$store.dispatch('rememberAcc', token)
     },
     navHover (e) {
+      if (!this.navShow) return false
       if (document.body.clientWidth <= 991) return false
       this.navName = e.target.text
     },
@@ -481,12 +501,15 @@ export default {
       this.$store.dispatch('logOut')
     },
     sendKeyword () {
+      if (!this.keyword) return false
+      this.navShow = !this.navShow
       this.$store.commit('SET_KEYWORD', this.keyword)
       if (this.$route.path === '/search') return false
       this.$router.push({ path: '/search' })
       this.keyword = ''
-      // this.$emit('keywordSend', this.keyword)
     }
+  },
+  updated () {
   }
 }
 </script>
@@ -497,26 +520,33 @@ export default {
   font-size: 12px;
   text-decoration: none;
 }
+
 h3 {
   margin: 40px 0 0;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }
+
 .menuImg img{
   width:300px;
 }
+
 a.nav-link{
   position: relative;
 }
+
 div.arrow::before{
   position: absolute;
   content: '';
@@ -530,6 +560,7 @@ div.arrow::before{
   border-left:5px solid transparent ;
   border-top: 5px solid #C79C57;
 }
+
 .cart {
   position:absolute;
   top:70px;
@@ -549,6 +580,12 @@ div.arrow::before{
   border-style: solid;
   border-color: transparent transparent #fff transparent;
 }
+
+.searchIcon{
+  color: rgba(255, 255, 255, .4);
+  cursor: pointer;
+}
+
 .overFlow{
   max-height: 310px;
   width: 100%;
@@ -556,14 +593,17 @@ div.arrow::before{
   overflow-y: auto;
   overflow-x: hidden;
 }
+
 .cartList > li{
   font-size: 12px;
   display: block;
 }
+
 .cartList > li.h6{
   font-size: .8rem;
   font-weight: bold;
 }
+
 .checkOut{
   background-color: #C79C57;
   border:1px solid #C79C57;
@@ -576,11 +616,13 @@ div.arrow::before{
   color:#000;
   background-color: #fff;
 }
+
 .revomeIcon{
   top: 0px;
   left: 7%;
   z-index: 1;
 }
+
 .totalNum{
   position: absolute;
   top:50%;
@@ -593,10 +635,12 @@ div.arrow::before{
   color:#fff;
   font-size: .6rem;
 }
+
 .modal-title{
   width: 100%;
   text-align: center;
 }
+
 .confirmBtn{
   background-color: #C79C57;
   border:1px solid #C79C57;
@@ -604,9 +648,51 @@ div.arrow::before{
   height:3rem;
   border-radius:2px;
 }
+
 .confirmBtn:hover{
   border:1px solid #C79C57;
   color:#000;
   background-color: #fff;
 }
+
+.bg-black{
+  background: rgba(0, 0, 0, 0.8);
+}
+
+input.mx-2{
+  background: rgba(0, 0, 0, 0);
+  border: 0px;
+  font-size: 1rem;
+  width: 30%;
+  height: 2rem;
+  position: relative;
+  color: #fff;
+  padding: 0 1rem;
+}
+
+.slide-search-enter-active {
+  transition: all .5s ease;
+}
+/* .slide-search-enter-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+} */
+
+.slide-fade-enter-active {
+  transition: all .5s ease;
+}
+/* .slide-fade-enter-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+} */
+
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+.slide-search-enter, .slide-search-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
 </style>

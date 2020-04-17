@@ -61,7 +61,6 @@
               <input name="id" type="text" :value="slideSelected" hidden>
             </td>
             <td>
-              <!-- <img :src="require(`../assets/img/slide/${item.img}`)" :alt="item.title" > -->
               <img :src="`/images/slide/${item.img}`" width="200px">
               <input :name="`img[${item.id}]`" type="text" :value="item.img" hidden>
             </td>

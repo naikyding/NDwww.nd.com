@@ -415,9 +415,6 @@ export default {
         imgData.push(URL.createObjectURL(e.target.files[i]))
       }
       this.uploadFile.img = imgData
-      // this.uploadFile.name = e.target.files[0].name
-      // this.uploadFile.state = true
-      // this.uploadFile.url = URL.createObjectURL(e.target.files[0])
     },
     modalHide () {
       this.$bvModal.hide('newProduct_Modal')

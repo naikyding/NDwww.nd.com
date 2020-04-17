@@ -16,7 +16,7 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { faGooglePlus, faFacebookSquare, faInstagram, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import { BootstrapVue, BIcon, BIconArrowUp, BIconArrowDown, BIconSearch, BIconDash, BIconFiles, BIconBag, BIconGeoAlt, BIconPerson, BIconPlus, BIconXCircleFill, BIconArrowRepeat, BIconTrash, BIconPencil } from 'bootstrap-vue'
+import { BootstrapVue, BIcon, BIconArrowUp, BIconArrowDown, BIconSearch, BIconDash, BIconX, BIconFiles, BIconBag, BIconGeoAlt, BIconPerson, BIconPlus, BIconXCircleFill, BIconArrowRepeat, BIconTrash, BIconPencil } from 'bootstrap-vue'
 
 Vue.use(BootstrapVue)
 Vue.use(VueSweetalert2)
@@ -34,6 +34,7 @@ Vue.component('BIconArrowRepeat', BIconArrowRepeat)
 Vue.component('BIconTrash', BIconTrash)
 Vue.component('BIconPencil', BIconPencil)
 Vue.component('BIconFiles', BIconFiles)
+Vue.component('BIconX', BIconX)
 
 library.add(faCoffee, faFacebookSquare, faGooglePlus, faInstagram, faTwitter, faYoutube)
 Vue.component('font-awesome-icon', FontAwesomeIcon)

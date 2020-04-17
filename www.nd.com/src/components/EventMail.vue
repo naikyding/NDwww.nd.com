@@ -3,11 +3,14 @@
     <!-- contactUs -->
     <form id="eventMailFrom" method="post" @submit.stop.prevent="postEventMail">
       <section class="contactUs px-1 px-md-5 my-5 d-flex align-items-center">
-        <div v-if="state" class="container px-md-5 inputSpace">
-          <h2 class="text-center text-light">THANKS FOR SIGNING UP.</h2>
-          <p class="text-center text-light">You have been added to our mailing list.</p>
-        </div>
-        <div v-else class="container px-md-5 inputSpace">
+        <transition name="fade">
+          <div v-if="state" class="container px-md-5 inputSpace">
+            <h2 class="text-center text-light">THANKS FOR SIGNING UP.</h2>
+            <p class="text-center text-light">You have been added to our mailing list.</p>
+          </div>
+        </transition>
+
+        <div v-if="!state" class="container px-md-5 inputSpace">
           <div class="row text-white px-md-5 inputContent">
             <div class="col-12 col-md-6 text-left"><h1>TAKE 10% OFF, ON US</h1></div>
             <div class="col-12 col-md-6 text-left"><p>Sign up now to enjoy 10% off your purchase and receive the latest news on new arrivals, exclusive promotions, and more.</p></div>
@@ -86,5 +89,12 @@ a {
 }
 .contactUsBtn:hover{
   color: #000;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

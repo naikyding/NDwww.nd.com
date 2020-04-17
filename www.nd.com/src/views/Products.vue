@@ -104,7 +104,6 @@
               </select>
             </div>
             <div class="addBag flex-grow-1">
-              <!-- <button class="px-2 px-md-4 py-2 px-md-5">SHOP NOW</button class="px-2 px-md-4 py-2 px-md-5"> -->
               <input @click="addToBag" class="btn w-100 addBagBtn" type="button" value="ADD TO BAG">
             </div>
           </div>
@@ -164,6 +163,7 @@
 import Nav from '@/components/Nav.vue'
 import EventMail from '@/components/EventMail.vue'
 import Footer from '@/components/Footer.vue'
+import mysql from '../admin/mysql.js'
 // import storage from '../storage/index.js'
 
 export default {
@@ -220,11 +220,9 @@ export default {
   created () {
     window.scrollTo(0, 0)
     const { table, name } = this.$route.params
-    // console.log(table.toUpperCase(), name)
-    this.axios.get(`/api/Github/ND_Vue/api/api.php?do=productsSelect&table=${table.toUpperCase()}&title=${name.split('-').join(' ')}`).then((res) => {
-    // this.axios.get(`api/api.php?do=productsSelect&table=${table.toUpperCase()}&title=${name.split('-').join(' ')}`).then((res) => {
-      if (!res.data) return this.$router.replace({ path: '/' })
-      this.data = res.data
+    mysql.get(`productsSelect&table=${table.toUpperCase()}&title=${name.split('-').join(' ')}`).then((res) => {
+      if (!res) return this.$router.replace({ path: '/' })
+      this.data = res
     })
   },
   mounted () {

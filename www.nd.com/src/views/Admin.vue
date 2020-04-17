@@ -6,7 +6,7 @@
       <router-link to="/admin" class="text-decoration-none text-dark" @click.native="sidebar.clickItem = ''">
         <h5 class="mb-0">後台管理系統</h5>
       </router-link>
-      <button type="button" class="btn ml-3 logOutbtn">登 出</button>
+      <button type="button" class="btn ml-3 logOutbtn" @click="signOut">登 出</button>
       <h4 class="itemText mx-auto mb-0"><span v-if="sidebar.clickItem !== 'admin'">{{ sidebar.clickItem }}</span></h4>
       <router-link to="/" class="navbar-brand mr-0" ><h2 class="mb-0">NIKEDIN</h2></router-link>
     </nav>
@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import mysql from '../admin/mysql'
+
 export default {
   name: 'Admin',
   components: {
@@ -44,13 +46,24 @@ export default {
   computed: {
   },
   created () {
-    this.sidebar.clickItem = this.$route.name
+    const token = localStorage.getItem('TOKEN')
+    if (!token) return this.$router.replace({ path: '/' })
+    else if (token) {
+      mysql.post('GET_admin', token)
+    }
+    const itemName = this.$route.name
+    if (itemName !== 'admin') this.sidebar.clickItem = itemName
   },
   mounted () {
   },
   methods: {
     showItem (e) {
       this.sidebar.clickItem = e.target.innerText
+    },
+    signOut () {
+      this.$store.dispatch('logOut').then(() => {
+        this.$router.replace({ path: '/' })
+      })
     }
   }
 }
@@ -88,4 +101,5 @@ li a:hover{
   color: #666;
   font-weight: bold;
 }
+
 </style>
