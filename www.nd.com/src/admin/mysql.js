@@ -5,8 +5,8 @@ import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
 
 const mysql = {
-  url: '/api/Github/ND_Vue/api/api.php?do=',
-  // url: 'api/api.php?do=',
+  // url: '/api/Github/ND_Vue/api/api.php?do=',
+  url: 'api/api.php?do=',
   get (doItem) {
     return axios.get(this.url + doItem).then((res) => {
       return res.data
