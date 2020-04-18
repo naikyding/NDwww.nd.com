@@ -138,4 +138,20 @@ export default {
   methods: {
   }
 }
+
 </script>
+
+<style>
+.carousel-control-next-icon{
+  background: url('/images/icon/chevron-compact-right.svg') no-repeat;
+  width: 3rem;
+  height: 3rem;
+  text-align: center;
+}
+.carousel-control-prev-icon{
+  background: url('/images/icon/chevron-compact-left.svg') no-repeat;
+  width: 3rem;
+  height: 3rem;
+  text-align: center;
+}
+</style>
