@@ -14,7 +14,7 @@
     <div class="main d-flex">
       <!-- sideBar -->
       <ul class="sidebar menuList d-flex mb-0 flex-column vh-100" style="padding-top: 80px;padding-inline-start: 0px;">
-        <li class="text-center"><router-link to="/admin/首頁管理" class="py-4 d-block  text-decoration-none" @click.native="showItem" :class="{ itemBg: this.sidebar.clickItem == '首頁管理' }">首頁管理</router-link></li>
+        <li class="text-center"><router-link to="/admin/首頁管理" class="py-4 d-block text-decoration-none" @click.native="showItem" :class="{ itemBg: this.sidebar.clickItem == '首頁管理' }">首頁管理</router-link></li>
         <li class="text-center"><router-link to="/admin/商品管理" class="py-4 d-block text-decoration-none" @click.native="showItem" :class="{ itemBg: this.sidebar.clickItem == '商品管理' }">商品管理</router-link></li>
         <li class="text-center"><router-link to="/admin/優惠活動" class="py-4 d-block text-decoration-none" @click.native="showItem" :class="{ itemBg: this.sidebar.clickItem == '優惠活動' }">優惠活動</router-link></li>
         <li class="text-center"><router-link to="/admin/客戶管理" class="py-4 d-block text-decoration-none" @click.native="showItem" :class="{ itemBg: this.sidebar.clickItem == '客戶管理' }">客戶管理</router-link></li>
@@ -22,6 +22,9 @@
       </ul>
       <!-- right side -->
       <div class="content w-100 overflow-auto vh-100">
+        <div v-if="!sidebar.clickItem" class="noneItem px-3">
+          <img src="images/landing/ck_bg.jpg" class="w-100" alt="">
+        </div>
         <!-- item DB -->
         <router-view></router-view>
       </div>
@@ -70,6 +73,11 @@ export default {
 </script>
 
 <style scoped>
+.noneItem{
+  margin-top: 70px;
+  overflow: hidden;
+}
+
 .logOutbtn{
   color:#000;
   border:1px solid #C79C57;

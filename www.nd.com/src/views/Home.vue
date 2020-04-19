@@ -143,13 +143,14 @@ export default {
 
 <style>
 .carousel-control-next-icon{
-  background: url('/images/icon/chevron-compact-right.svg') no-repeat;
+  /* svg -> base64 */
+  background: url('data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iYmkgYmktY2hldnJvbi1jb21wYWN0LXJpZ2h0IiB3aWR0aD0iM3JlbSIgaGVpZ2h0PSIzcmVtIiB2aWV3Qm94PSIwIDAgMjAgMjAiIGZpbGw9IiNmZmYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNOC43NzYgMy41NTNhLjUuNSAwIDAxLjY3MS4yMjNsMyA2YS41LjUgMCAwMTAgLjQ0OGwtMyA2YS41LjUgMCAxMS0uODk0LS40NDhMMTEuNDQgMTAgOC41NTMgNC4yMjRhLjUuNSAwIDAxLjIyMy0uNjcxeiIgY2xpcC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPg==') no-repeat;
   width: 3rem;
   height: 3rem;
   text-align: center;
 }
 .carousel-control-prev-icon{
-  background: url('/images/icon/chevron-compact-left.svg') no-repeat;
+  background: url('data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iYmkgYmktY2hldnJvbi1jb21wYWN0LWxlZnQiIHdpZHRoPSIzZW0iIGhlaWdodD0iM2VtIiB2aWV3Qm94PSIwIDAgMjAgMjAiIGZpbGw9IiNmZmYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMTEuMjI0IDMuNTUzYS41LjUgMCAwMS4yMjMuNjdMOC41NiAxMGwyLjg4OCA1Ljc3NmEuNS41IDAgMTEtLjg5NC40NDhsLTMtNmEuNS41IDAgMDEwLS40NDhsMy02YS41LjUgMCAwMS42Ny0uMjIzeiIgY2xpcC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPg==') no-repeat;
   width: 3rem;
   height: 3rem;
   text-align: center;
