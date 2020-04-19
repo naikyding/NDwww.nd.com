@@ -3,8 +3,7 @@
 獨立 SPA 製作電商網站，包含版本設計、前端處理、後端api、資料庫建置。
 
 Vue CLI 為專案架構製作、Vuex 管理共同資料(購物車資料...等)、Vue Router 控制頁面路由名稱，ADMIN 統一整合由 admin/api.js 操作後端 API 動作，再經由 SweetAlert 互動顯示操作狀態(成功/失敗/操作完成)。
-前端由 AXIOS 後端 API 互動。
-後端使用 PHP PDO 技術連線 MySQL 操作 SQL CRUD。
+前端由 AXIOS 後端 API 互動；後端使用 PHP PDO 技術連線 MySQL 操作 SQL CRUD。
 
 - ### 開發技術:
     
