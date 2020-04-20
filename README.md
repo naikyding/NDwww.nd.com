@@ -7,9 +7,9 @@ Vue CLI 為專案架構製作、Vuex 管理共同資料(購物車資料...等)�
 
 - ### 開發技術:
     
-    |設計|套件|前端|後端|資料庫|
-    |-|-|-|-|-|
-    |AI|Bootstrap-Vue|Vue CLI|PHP|MySQL|
+    |設計|套件|前端|後端|資料庫|版控|
+    |-|-|-|-|-|-|
+    |AI|Bootstrap-Vue|Vue CLI|PHP|MySQL|GitKraken||
     |PS|SweetAlert2|Vue Router|
     |XD|AXIOS|Vuex|
     
